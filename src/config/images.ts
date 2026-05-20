@@ -48,8 +48,8 @@ export const heroImage = localHeroContainerImage;
 //   2. Uncomment and update the line below
 //   3. Replace the aboutImage export at the bottom of this section
 //
-// import aboutImage from '../assets/images/about/team.jpg';
-export const aboutImage: ImageMetadata | undefined = undefined;
+import localAboutImage from "../assets/images/about/team.png";
+export const aboutImage = localAboutImage;
 
 // ── Gallery — auto-discovered ─────────────────────────────────────────────────
 // Drop any number of image files into src/assets/images/gallery/ and they will

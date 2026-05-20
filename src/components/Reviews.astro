@@ -13,12 +13,27 @@ interface Props {
 }
 
 const {
-  topper = 'Testimonials',
-  heading = 'What our customers say',
+  topper = 'Testimonios',
+  heading = 'La experiencia de nuestros clientes',
   reviews = [
-    { quote: 'They showed up on time, explained everything clearly, and finished the job faster than expected. Best service experience we\'ve had.', name: 'Sarah M.', location: 'Denver, CO', rating: 5 },
-    { quote: 'Honest pricing and top-notch work. I\'ve used them for three different projects now and they never disappoint.', name: 'James R.', location: 'Aurora, CO', rating: 5 },
-    { quote: 'Our emergency call was answered in minutes. They had the problem fixed before dinner. Truly dependable.', name: 'Linda K.', location: 'Lakewood, CO', rating: 5 },
+    { 
+      quote: 'Excelente servicio de casillero. Traje la mercancía tecnológica para mi negocio en Chacao y llegó en tiempo récord por vía aérea. La atención al cliente y el desglose de tarifas es totalmente transparente.', 
+      name: 'Alejandro M.', 
+      location: 'Caracas, VE', 
+      rating: 5 
+    },
+    { 
+      quote: 'Llevamos más de 5 años consolidando la carga marítima de nuestra empresa con ellos. Tener almacén propio en Miami nos da una tranquilidad enorme porque sabemos exactamente dónde está la mercancía.', 
+      name: 'María Fernanda R.', 
+      location: 'Miranda, VE', 
+      rating: 5 
+    },
+    { 
+      quote: 'Mi primera vez usando el servicio de puerta a puerta para compras personales de Amazon. Todo llegó impecable, súper bien embalado y directo a la comodidad de mi casa. Muy profesionales.', 
+      name: 'Carlos K.', 
+      location: 'Caracas, VE', 
+      rating: 5 
+    },
   ],
 } = Astro.props;
 ---

@@ -26,7 +26,7 @@ const {
   topper = "Todo tipo de carga",
   heading = brand.tagline,
   description = brand.description,
-  ctaLabel = "Solicite un presupuesto",
+  ctaLabel = "Solicite su presupuesto",
   ctaHref = "https://wa.me/584141018217?text=Hola,%20quisiera%20solicitar%20un%20presupuesto%20para%20un%20env%C3%ADo.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n?",
   secondaryLabel = "Nuestros Servicios",
   secondaryHref = "/services",
@@ -67,6 +67,7 @@ const {
         <a
           href={ctaHref}
           class="inline-flex min-h-[44px] gap-x-1.5 items-center justify-center rounded-md bg-accent px-6 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          target="_blank"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -116,13 +117,13 @@ const {
           >
           </path>
         </svg>
-        Llámenos {client.phoneFormatted}
+        Llámenos al {client.phoneFormatted}
       </a>
     </div>
 
     <!-- Hero image -->
     <div
-      class="relative order-1 overflow-hidden rounded-lg shadow-xl aspect-4/3 lg:order-2"
+      class="relative order-1 overflow-hidden rounded-lg shadow-xl aspect-4/3 lg:order-2 shadow-xl shadow-blue-900/30"
       transition:name="hero-image"
     >
       <Image
