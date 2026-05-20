@@ -37,8 +37,8 @@ import type {ImageMetadata} from "astro";
 //   2. Uncomment and update the line below
 //   3. Replace the heroImage export at the bottom of this section
 //
-import heroImage from "../assets/images/hero/Hero.png";
-export const heroImage = heroImage;
+import localHeroContainerImage from "../assets/images/hero/Hero.png";
+export const heroImage = localHeroContainerImage;
 
 // ── About ─────────────────────────────────────────────────────────────────────
 // Recommended: portrait or square image of your team/job site, at least 900 × 700 px
