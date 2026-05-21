@@ -23,7 +23,7 @@ interface Props {
 }
 
 const {
-  topper = "Todo tipo de carga",
+  topper = "Transportamos todo tipo de carga",
   heading = brand.tagline,
   description = brand.description,
   ctaLabel = "Solicite su presupuesto",
@@ -50,7 +50,7 @@ const {
       }
 
       <h1
-        class="font-heading text-display font-bold uppercase leading-none tracking-tight text-text"
+        class="font-heading text-display font-bold uppercase leading-none tracking-tight text-text max-w-[200px] md:max-w-none"
         transition:name="hero-heading"
       >
         {heading}
@@ -100,7 +100,7 @@ const {
       <!-- Tap-to-call -->
       <a
         href={`tel:${client.phoneForTel}`}
-        class="inline-flex items-center gap-2 pt-1 text-sm font-semibold text-text-muted transition-colors hover:text-primary"
+        class="md:hidden inline-flex items-center gap-2 pt-1 text-sm font-semibold text-text-muted transition-colors hover:text-primary"
       >
         <svg
           class="size-4"
