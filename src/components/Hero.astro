@@ -127,7 +127,7 @@ const {
       transition:name="hero-image"
     >
       <Image
-        src={typeof imageSrc === "object" ? imageSrc.src : imageSrc}
+        src={imageSrc as any}
         alt={imageAlt}
         width={800}
         height={600}

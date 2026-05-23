@@ -49,7 +49,7 @@ const {
     <!-- Image -->
     <div class="overflow-hidden rounded-lg shadow-xl shadow-blue-900/30">
       <Image
-        src={typeof imageSrc === "object" ? imageSrc.src : imageSrc}
+        src={imageSrc as any}
         alt={imageAlt}
         width={700}
         height={525}
