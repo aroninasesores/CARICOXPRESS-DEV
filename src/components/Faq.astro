@@ -1,0 +1,119 @@
+---
+import {faqs} from "../config/faq";
+
+interface Props {
+  bgClass?: string; 
+}
+
+const { bgClass = "" } = Astro.props;
+---
+
+<section class={`${bgClass} py-section`}>
+  <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+    <span class="text-topper font-bold uppercase tracking-widest text-accent">
+      Respuestas a las dudas más comunes
+    </span>
+    <h2
+      class="mt-2 font-heading text-h2 font-bold uppercase text-text text-pretty"
+    >
+      FAQ - Preguntas Frecuentes
+    </h2>
+  </div>
+
+  <div class="mx-auto mt-8 grid max-w-xl divide-y divide-neutral-200">
+    {
+      faqs.map((item) => (
+        /* 🟢 ID condicional asignado correctamente */
+        <div class="py-5">
+          <details
+            class="group"
+            open={item.id === "tarifas"}
+          >
+            {/* 🟢 Eliminamos el fragmento vacío para que el flex directo ordene el título y el SVG */}
+            <summary
+              class="flex cursor-pointer list-none items-center justify-between font-medium text-navy-900 hover:text-orange-500 transition-colors"
+              id={item.id && item.id}
+            >
+              <span class="text-lg font-medium" set:html={item.pregunta} />
+              <span class="transition group-open:rotate-180 text-neutral-500">
+                <svg
+                  fill="none"
+                  height="24"
+                  shape-rendering="geometricPrecision"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  width="24"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </span>
+            </summary>
+
+            <div class="group-open:animate-fadeIn mt-3 text-neutral-600 space-y-4">
+              {/* 🟢 Cambiado a set:html para que procese tus etiquetas <span> con clases de Tailwind */}
+              <p
+                class="leading-relaxed"
+                set:html={item.respuesta}
+              />
+
+              {/* 📊 Render condicional de la tabla de tarifas */}
+              {item.hasTable && (
+                <div class="mt-4 overflow-x-auto rounded-lg border border-neutral-200 shadow-sm">
+                  <table class="min-w-full text-sm text-left text-neutral-600">
+                    <thead class="bg-neutral-50 text-neutral-900 font-bold border-b border-neutral-200">
+                      <tr>
+                        <th class="px-4 py-2.5">Vía de Envío</th>
+                        <th class="px-4 py-2.5 text-center">Caracas</th>
+                        <th class="px-4 py-2.5 text-center">Resto del País</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-neutral-200 bg-white">
+                      <tr class="hover:bg-neutral-50 transition-colors">
+                        <td class="px-4 py-2.5 font-medium text-neutral-900">
+                          Aérea (Por Libra)
+                        </td>
+                        <td class="px-4 py-2.5 text-center">$6</td>
+                        <td class="px-4 py-2.5 text-center">$9</td>
+                      </tr>
+                      <tr class="hover:bg-neutral-50 transition-colors">
+                        <td class="px-4 py-2.5 font-medium text-neutral-900">
+                          Marítima (Por Pie Cúbico)
+                        </td>
+                        <td class="px-4 py-2.5 text-center">$35</td>
+                        <td class="px-4 py-2.5 text-center">$38</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                  <p class="text-sm text-neutral-500 italic mt-2">
+                    El mínimo de carga para envíos aéreos es de $35 y para
+                    envíos marítimos es de $50.
+                  </p>
+              )}
+
+              {/* 🔗 Render condicional para el enlace dinámico al blog */}
+              {item.href && (
+                <div class="mt-4 p-3 bg-neutral-50 rounded-lg border border-dashed border-neutral-300">
+                  <p class="text-sm text-neutral-700 font-medium">
+                    {item.description
+                      ? item.description
+                      : "Conoce detalladamente todos los pasos aquí:"}
+                  </p>
+                  <a
+                    href={item.href}
+                    class="text-orange-500 hover:text-orange-600 hover:underline text-sm font-bold inline-block mt-1 transition-colors"
+                  >
+                    Ver guía en el blog →
+                  </a>
+                </div>
+              )}
+            </div>
+          </details>
+        </div>
+      ))
+    }
+  </div>
+</section>

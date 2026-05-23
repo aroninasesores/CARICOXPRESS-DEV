@@ -28,8 +28,8 @@ const {
   description = brand.description,
   ctaLabel = "Solicite su presupuesto",
   ctaHref = "https://wa.me/584141018217?text=Hola,%20quisiera%20solicitar%20un%20presupuesto%20para%20un%20env%C3%ADo.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n?",
-  secondaryLabel = "Nuestros Servicios",
-  secondaryHref = "/services",
+  secondaryLabel = "Nuestras Tarifas",
+  secondaryHref = "/#tarifas",
   imageSrc = localHeroImage ?? PLACEHOLDER,
   imageAlt = "Professional tradesperson at work",
 } = Astro.props;
@@ -50,7 +50,7 @@ const {
       }
 
       <h1
-        class="font-heading text-display font-bold uppercase leading-none tracking-tight text-text max-w-[200px] md:max-w-none"
+        class="font-heading text-display font-bold uppercase leading-none tracking-tight text-text max-w-50 md:max-w-none"
         transition:name="hero-heading"
       >
         {heading}
@@ -66,7 +66,7 @@ const {
       >
         <a
           href={ctaHref}
-          class="inline-flex min-h-[44px] gap-x-1.5 items-center justify-center rounded-md bg-accent px-6 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          class="inline-flex min-h-11 gap-x-1.5 items-center justify-center rounded-md bg-accent px-6 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           target="_blank"
         >
           <svg
@@ -91,7 +91,7 @@ const {
         </a>
         <a
           href={secondaryHref}
-          class="inline-flex min-h-[44px] items-center justify-center rounded-md border-2 border-primary px-6 py-3 text-base font-bold text-primary transition-colors hover:bg-primary hover:text-primary-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          class="inline-flex min-h-11 items-center justify-center rounded-md border-2 border-primary px-6 py-3 text-base font-bold text-primary transition-colors hover:bg-primary hover:text-primary-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           {secondaryLabel}
         </a>
@@ -123,11 +123,11 @@ const {
 
     <!-- Hero image -->
     <div
-      class="relative order-1 overflow-hidden rounded-lg shadow-xl aspect-4/3 lg:order-2 shadow-xl shadow-blue-900/30"
+      class="relative order-1 overflow-hidden rounded-lg aspect-4/3 lg:order-2 shadow-xl shadow-blue-900/30"
       transition:name="hero-image"
     >
       <Image
-        src={imageSrc}
+        src={typeof imageSrc === "object" ? imageSrc.src : imageSrc}
         alt={imageAlt}
         width={800}
         height={600}

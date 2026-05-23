@@ -8,6 +8,7 @@ import {aboutImage as localAboutImage} from "../config/images";
 const PLACEHOLDER =
   "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=80";
 
+// 🟢 UNIFICADO: Todas las props viven en una sola interfaz limpia
 interface Props {
   topper?: string;
   heading?: string;
@@ -17,8 +18,10 @@ interface Props {
   ctaHref?: string;
   imageSrc?: ImageMetadata | string;
   imageAlt?: string;
+  bgClass?: string;
 }
 
+// 🟢 UNIFICADO: Una sola asignación de props con sus respectivos fallbacks
 const {
   topper = "Quiénes Somos",
   heading = "Su aliado logístico con más de 10 años de trayectoria",
@@ -34,18 +37,19 @@ const {
   ctaLabel = "Conozca Más de Nosotros",
   ctaHref = "/about",
   imageSrc = localAboutImage ?? PLACEHOLDER,
-  imageAlt = "Equipo profesional operando en el purto con containers de fondo",
+  imageAlt = "Equipo profesional operando en el puerto con containers de fondo",
+  bgClass = "",
 } = Astro.props;
 ---
 
-<section class="py-section">
+<section class={`${bgClass} py-section`}>
   <div
     class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14"
   >
     <!-- Image -->
     <div class="overflow-hidden rounded-lg shadow-xl shadow-blue-900/30">
       <Image
-        src={imageSrc}
+        src={typeof imageSrc === "object" ? imageSrc.src : imageSrc}
         alt={imageAlt}
         width={700}
         height={525}
@@ -70,7 +74,7 @@ const {
         ))
       }
 
-      <!-- Benefits list -->
+      {/* Benefits list */}
       <ul
         class="space-y-3 pt-2"
         role="list"
@@ -99,9 +103,12 @@ const {
       </ul>
 
       <div class="pt-2">
+        {
+          /* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 como recomendó Tailwind */
+        }
         <a
           href={ctaHref}
-          class="inline-flex min-h-[44px] items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-bold text-primary-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          class="inline-flex min-h-11 items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-bold text-primary-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           {ctaLabel}
           <svg
