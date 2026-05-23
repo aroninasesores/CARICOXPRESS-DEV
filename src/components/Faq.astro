@@ -25,7 +25,7 @@ const { bgClass = "" } = Astro.props;
     {
       faqs.map((item) => (
         /* 🟢 ID condicional asignado correctamente */
-        <div class="py-5">
+        <div class="first:pt-0 last:pb-0 py-5">
           <details
             class="group"
             open={item.id === "tarifas"}
