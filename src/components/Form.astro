@@ -1,4 +1,18 @@
-<section class="py-section">
+---
+// Si este código está en un archivo de componente separado (ej. ContactForm.astro),
+// necesitas definir la interfaz y recibir las props así:
+
+interface Props {
+  bgClass?: string;
+}
+
+const {bgClass = ""} = Astro.props;
+---
+
+{
+  /* 🟢 OPTIMIZADO: Agregamos la clase dinámica bgClass combinada con py-section */
+}
+<section class={`py-section ${bgClass}`}>
   <div class="mx-auto max-w-xl gap-10 px-4 sm:px-6 lg:gap-14">
     <!-- Form -->
     <div class="lg:col-span-3">
@@ -45,12 +59,13 @@
               *
             </span>
           </span>
+          {/* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 */}
           <input
             type="text"
             name="name"
             required
             autocomplete="name"
-            class="min-h-[44px] rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            class="min-h-11 rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
         </label>
 
@@ -63,23 +78,25 @@
               *
             </span>
           </span>
+          {/* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 */}
           <input
             type="email"
             name="email"
             required
             autocomplete="email"
-            class="min-h-[44px] rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            class="min-h-11 rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
         </label>
 
         <label class="flex flex-col gap-1.5">
           <span class="text-sm font-medium text-text">Teléfono</span>
+          {/* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 */}
           <input
             type="tel"
             name="phone"
             autocomplete="tel"
             inputmode="tel"
-            class="min-h-[44px] rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            class="min-h-11 rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
         </label>
 
@@ -96,14 +113,15 @@
             name="message"
             rows="5"
             required
-            class="min-h-[120px] rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-y"
+            class="min-h-30 rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-y"
           >
           </textarea>
         </label>
 
+        {/* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 */}
         <button
           type="submit"
-          class="mt-2 inline-flex min-h-[44px] cursor-pointer items-center justify-center self-start rounded-md bg-accent px-8 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          class="mt-2 inline-flex min-h-11 cursor-pointer items-center justify-center self-start rounded-md bg-accent px-8 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           Enviar Mensaje
         </button>
