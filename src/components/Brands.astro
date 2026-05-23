@@ -1,0 +1,126 @@
+---
+const {
+  topper = "Compre en el exterior",
+  heading = "Nosotros lo traemos",
+  description = "Hemos ayudado a miles de clientes a importar todo tipo de productos desde cualquier lugar del mundo.",
+} = Astro.props;
+
+const logos = [
+  {src: "/brands/logo-amazon.svg", alt: "Comprar en Amazon desde Venezuela"},
+  {src: "/brands/logo-ebay.svg", alt: "Casillero para eBay Venezuela"},
+  {src: "/brands/logo-apple.svg", alt: "Traer iPhone de Apple a Caracas"},
+  {
+    src: "/brands/logo-samsung.svg",
+    alt: "Traer teléfonos de Samsung a Caracas",
+  },
+  {src: "/brands/logo-shein.svg", alt: "Envíos de SHEIN a Venezuela"},
+  {src: "/brands/logo-adidas.svg", alt: "Traer zapatillas de Adidas a Caracas"},
+  {src: "/brands/logo-nike.svg", alt: "Traer zapatillas de Nike a Caracas"},
+  {
+    src: "/brands/logo-calvin-klein.svg",
+    alt: "Casillero internacional para ropa Calvin Klein en Venezuela",
+  },
+  {
+    src: "/brands/logo-michael-kors.svg",
+    alt: "Importar carteras y accesorios Michael Kors a Caracas",
+  },
+  {
+    src: "/brands/logo-victorias-secret.svg",
+    alt: "Envíos de cremas y lencería Victoria's Secret a Venezuela",
+  },
+  {
+    src: "/brands/logo-tommy-hilfiger.svg",
+    alt: "Envíos aéreos de ropa Tommy Hilfiger a Venezuela",
+  },
+  {src: "/brands/logo-levis.svg", alt: "Traer jeans de Levi's a Venezuela"},
+  {
+    src: "/brands/logo-sephora.svg",
+    alt: "Comprar maquillaje original en Sephora desde Caracas",
+  },
+  {src: "/brands/logo-aliexpress.svg", alt: "Envíos de AliExpress a Caracas"},
+  {
+    src: "/brands/logo-alibaba.svg",
+    alt: "Importaciones de Alibaba a Venezuela",
+  },
+  {
+    src: "/brands/logo-walmart.svg",
+    alt: "Traer compras de Walmart a Venezuela",
+  },
+];
+---
+
+<section class="py-section relative w-full overflow-hidden bg-transparent">
+  <div
+    class="mx-auto max-w-site px-4 sm:px-6 flex flex-col items-center text-center"
+  >
+    <!-- Bloque de Textos -->
+    <div class="mb-10 max-w-2xl lg:mb-14">
+      <span class="text-topper font-bold uppercase tracking-widest text-accent">
+        {topper}
+      </span>
+      <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">
+        {heading}
+      </h2>
+      <p class="mt-3 text-text-muted leading-relaxed text-pretty">
+        {description}
+      </p>
+    </div>
+
+    <!-- Contenedor del Carrusel (Ocupa full ancho en móvil, máx 5xl en escritorio) -->
+    <div
+      class="w-screen max-w-5xl overflow-hidden gradient pointer-events-none select-none"
+    >
+      <div
+        class="flex flex-nowrap gap-12 w-max animate-slide-logos items-center py-4"
+      >
+        {
+          logos.concat(logos).map((logo) => (
+            // shrink-0 clave para evitar deformaciones; size adaptativo para pantallas pequeñas
+            <div class="flex items-center justify-center h-16 w-16 md:h-20 md:w-20 shrink-0 dark:bg-white rounded-xl p-2 ">
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                width="80"
+                height="80"
+                loading="eager"
+                class="max-w-full max-h-full object-contain"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gradient {
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+  }
+
+  .animate-slide-logos {
+    animation: slide-logos 30s linear infinite;
+  }
+
+  @keyframes slide-logos {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
