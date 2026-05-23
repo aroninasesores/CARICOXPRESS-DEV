@@ -5,8 +5,6 @@ import {brand} from "../config/brand";
 import {client} from "../data/client";
 import {heroImage as localHeroImage} from "../config/images";
 
-// Fallback Unsplash URL used until a local image is added to
-// src/assets/images/hero/ and registered in src/config/images.ts
 const PLACEHOLDER =
   "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80";
 
@@ -27,7 +25,7 @@ const {
   heading = brand.tagline,
   description = brand.description,
   ctaLabel = "Solicite su presupuesto",
-  ctaHref = "https://wa.me/584141018217?text=Hola,%20quisiera%20solicitar%20un%20presupuesto%20para%20un%20env%C3%ADo.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n?",
+  ctaHref = "https://wa.me/584141018217?text=Hola,%20quisiera%20solicitar%20un%20presupuesto%20para%20un%20env%C3%ADo 📦.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n?",
   secondaryLabel = "Nuestras Tarifas",
   secondaryHref = "/#tarifas",
   imageSrc = localHeroImage ?? PLACEHOLDER,

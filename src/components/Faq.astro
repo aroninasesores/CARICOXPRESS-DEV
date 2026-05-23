@@ -8,7 +8,7 @@ interface Props {
 const { bgClass = "" } = Astro.props;
 ---
 
-<section class={`${bgClass} py-section`}>
+<section class={`${bgClass} py-section`} id="tarifas">
     <div class="mx-auto max-w-site px-4 sm:px-6">
   <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
     <span class="text-topper font-bold uppercase tracking-widest text-accent">
@@ -25,7 +25,7 @@ const { bgClass = "" } = Astro.props;
     {
       faqs.map((item) => (
         /* 🟢 ID condicional asignado correctamente */
-        <div class="first:pt-0 last:pb-0 py-5">
+        <div class="last:pb-0 py-5 px-4 first:bg-amber-100/50">
           <details
             class="group"
             open={item.id === "tarifas"}
