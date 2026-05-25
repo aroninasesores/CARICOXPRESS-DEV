@@ -11,7 +11,7 @@
  */
 
 export const client = {
-  name: "Small Business Starter",
+  name: "CaricoXpress",
   email: "info@caricoxpress.com",
   phoneForTel: "+58 414 1018217",
   phoneFormatted: "(+58) 414 1018217",
