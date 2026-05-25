@@ -1,0 +1,148 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Banner from "../components/Banner.astro";
+import CTA from "../components/CTA.astro";
+import {brand} from "../config/brand";
+import {Image} from "astro:assets";
+
+const services = [
+  {
+    title: "Envíos Aéreos Express",
+    description:
+      "La solución ideal para tus compras urgentes o mercancía de alta prioridad. Conectamos nuestros almacenes de Miami con los principales destinos de Venezuela en tiempos récord, garantizando un manejo seguro, rastreo en tiempo real y la máxima eficiencia en la cadena de distribución nacional.",
+  },
+  {
+    title: "Envíos Marítimos Consolidados",
+    description:
+      "Optimiza tus costos logísticos mediante nuestro servicio de carga marítima consolidada. Perfecto para importaciones de gran volumen, cajas pesadas, mercancía comercial o mudanzas. Nos encargamos de la estiba, consolidación en contenedor y todo el proceso aduanal hasta la entrega final.",
+  },
+  {
+    title: "Asignación de Casillero Internacional",
+    description:
+      "Te proporcionamos una dirección física real y estratégica en Miami sin costos ocultos de apertura ni mantenimiento. Al registrarte, obtienes tu propio identificador de casillero para direccionar todas tus compras de plataformas como Amazon, eBay o proveedores directos de forma segura.",
+  },
+  {
+    title: "Prealerta y Control de Inventario",
+    description:
+      "Toma el control absoluto de tus paquetes antes de que lleguen a su destino. Mediante nuestro formulario de prealerta, notificas al sistema los números de tracking de tus compras, permitiéndonos registrar, clasificar y preparar tu carga inmediatamente tras su recepción en el almacén internacional.",
+  },
+  {
+    title: "Recepción y Consolidación de Carga",
+    description:
+      "Recibimos, verificamos el estado físico exterior de tus paquetes y agrupamos múltiples compras en un solo despacho eficiente. La consolidación inteligente te permite reducir drásticamente los costos de flete internacional, pagando únicamente por el volumen o peso neto de tu carga integrada.",
+  },
+  {
+    title: "Reempaque y Seguro Logístico",
+    description:
+      "Protegemos tu inversión de extremo a extremo. Ofrecemos servicios opcionales de reempaque profesional para optimizar el espacio físico de las cajas y proteger mercancía frágil, respaldado por una póliza de cobertura ante cualquier eventualidad durante el tránsito internacional.",
+  },
+];
+
+const icons = [
+  // Icono 1: Avión de Heroicons (Oficial y Verificado)
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3l4 7" />',
+
+  // Icono 2: Barco / Envíos Marítimos
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 14l-2 5H4l-2-5h20zm-2 0V9a1 1 0 00-1-1h-3V5a1 1 0 00-1-1H9a1 1 0 00-1 1v3H5a1 1 0 00-1 1v5m4-6v6m4-6v6m4-6v6" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 18h22M3 21h18" />',
+
+  // Icono 3: Dirección / Ubicación del Casillero
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />',
+
+  // Icono 4: Megáfono / Prealerta / Notificación rápida
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />',
+
+  // Icono 5: Cajas apiladas / Consolidación
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />',
+
+  // Icono 6: Escudo / Reempaque seguro y resguardo
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />',
+];
+---
+
+<BaseLayout
+  title="Services"
+  description={`Explore the full range of services offered by ${brand.name}. From repairs to remodeling, we do it all.`}
+>
+  <Header slot="header" />
+
+  <Banner title="Nuestros Servicios" />
+
+  <section>
+    <div
+      class="py-section mx-auto max-w-site flex flex-col items-center px-4 sm:px-6"
+    >
+      <div
+        class="flex flex-col items-center mx-auto mb-10 max-w-2xl gap-y-4 text-center lg:mb-14"
+      >
+        <h2 class="font-heading text-h2 font-bold uppercase text-text">
+          Qué podemos hacer por usted
+        </h2>
+        <p class="mt-3 text-text-muted leading-relaxed">
+          Ninguna carga es demasiado grande o pequeña para nuestro equipo de
+          transporte. Ya sea que necesite importar un teléfono o o realizar una
+          mudanza completa, estamos aquí para ayudarlo en cada paso del proceso.
+        </p>
+        <a
+          href="#nuestros-servicios"
+          class="inline-flex max-w-sm min-h-11 gap-x-1.5 items-center justify-center rounded-md bg-accent px-6 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          Conozca nuestros servicios
+        </a>
+      </div>
+
+      <div
+        class="max-w-2xl order-1 overflow-hidden rounded-lg aspect-4/3 lg:order-2 shadow-xl shadow-blue-900/30"
+        transition:name="hero-image"
+      >
+        <Image
+          src="/src/assets/images/services/servicios.png"
+          alt="Hero image"
+          width="800"
+          height="600"
+          loading="eager"
+          decoding="async"
+          class="size-full object-cover"
+        />
+      </div>
+    </div>
+    <section></section>
+
+    <section
+      class="bg-surface py-section"
+      id="nuestros-servicios"
+    >
+      <div class="container grid grid-cols-1 gap-8 md:grid-cols-2">
+        {
+          services.map((service, i) => (
+            <div class="flex gap-5 rounded-lg border border-border bg-background p-6 shadow-sm">
+              <div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <svg
+                  class="size-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  set:html={icons[i % icons.length]}
+                />
+              </div>
+              <div>
+                <h3 class="font-heading text-h3 font-semibold text-text">
+                  {service.title}
+                </h3>
+                <p class="mt-2 text-text-muted leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </section>
+
+  <CTA />
+
+  <Footer slot="footer" />
+</BaseLayout>

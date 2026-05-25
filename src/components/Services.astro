@@ -66,37 +66,37 @@ const {
       title: "Envío Aéreo Express",
       description:
         "La opción más rápida para tus cargas urgentes. Salidas semanales desde Miami y Madrid con entrega directa en Caracas en tiempo récord.",
-      href: "/services",
+      href: "/servicios",
     },
     {
       title: "Envío Marítimo",
       description:
         "Optimiza tus costos de importación con nuestro servicio marítimo (LCL). Ideal para mercancías voluminosas, pesadas o proyectos de gran escala.",
-      href: "/services",
+      href: "/servicios",
     },
     {
       title: "Casillero Internacional",
       description:
         "Asignación de dirección física en nuestros almacenes de origen para recibir, procesar y reexpedir tus compras personales o corporativas.",
-      href: "/services",
+      href: "/servicios",
     },
     {
       title: "Consolidación de Carga",
       description:
         "Agrupamos múltiples compras de diferentes proveedores en un solo despacho para que ahorres significativamente en el costo final del flete.",
-      href: "/services",
+      href: "/servicios",
     },
     {
       title: "Logística Corporativa",
       description:
         "Manejo especializado de contenedores completos para empresas. Nos encargamos de la cadena de suministro desde la fábrica hasta tu almacén.",
-      href: "/services",
+      href: "/servicios",
     },
     {
       title: "Asesoría Aduanera",
       description:
         "Gestión documental, clasificación arancelaria y nacionalización de mercancías. Evita demoras y contratiempos legales en los puertos de entrada.",
-      href: "/services",
+      href: "/servicios",
     },
   ],
 } = Astro.props;
@@ -124,7 +124,7 @@ const {
         services.map((service, i) => (
           <li>
             <a
-              href={service.href || "/services"}
+              href={service.href || "/servicios"}
               aria-label={`Learn more about ${service.title}`}
               class="group flex h-full cursor-pointer flex-col rounded-lg border border-border bg-background p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
             >
