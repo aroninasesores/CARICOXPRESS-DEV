@@ -61,3 +61,11 @@
   --font-body:
     var(--font-body), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900; /* Soporta fuentes variables */
+  font-display: swap;
+  src: url("../fonts/archivo-variable.woff2") format("woff2");
+}
