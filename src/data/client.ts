@@ -19,8 +19,8 @@ export const client = {
    *  as a trust signal. Set to an empty string to hide it. */
   license: "Lic# 123456",
   address: {
-    lineOne: "8239 NW 68th St",
-    lineTwo: "Miami, FL 33166",
+    lineOne: "8239 NW ",
+    lineTwo: "68th St",
     city: "Miami",
     state: "FL",
     zip: "33166",
