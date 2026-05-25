@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Banner from "../components/Banner.astro";
+import CTA from "../components/CTA.astro";
+import {brand} from "../config/brand";
+import {client} from "../data/client";
+
+const reviews = [
+  {
+    quote:
+      "Excelente servicio. Mis paquetes llegaron de Miami a Caracas en tiempo récord y todo perfectamente embalado. La atención por WhatsApp es inmediata y transparente.",
+    name: "Carlos M.",
+    location: "Caracas, DF",
+    rating: 5,
+  },
+  {
+    quote:
+      "Precios honestos y sin sorpresas en la entrega final. He utilizado tanto el casillero aéreo como la carga marítima para mi negocio y nunca decepcionan.",
+    name: "Alejandro R.",
+    location: "Valencia, Carabobo",
+    rating: 5,
+  },
+  {
+    quote:
+      "Tenía una urgencia con unos repuestos comerciales y el envío express aéreo funcionó de maravilla. El sistema de prealerta te da una tranquilidad tremenda.",
+    name: "Elena K.",
+    location: "Maracay, Aragua",
+    rating: 5,
+  },
+  {
+    quote:
+      "El envío marítimo consolidado llegó impecable y exactamente dentro del presupuesto acordado. Muy profesionales y organizados con el proceso de aduana.",
+    name: "Pedro & María P.",
+    location: "Barquisimeto, Lara",
+    rating: 5,
+  },
+  {
+    quote:
+      "Gran comunicación de principio a fin. Te notifican cada paso del rastreo desde que la mercancía es recibida en sus almacenes de Miami hasta la entrega.",
+    name: "Ana W.",
+    location: "Lechería, Anzoátegui",
+    rating: 5,
+  },
+  {
+    quote:
+      "Valoro muchísimo la transparencia en el cálculo del peso y volumen; no hay tarifas ocultas ni cobros raros. Cien por ciento recomendados para envíos seguros.",
+    name: "Marcos D.",
+    location: "Maracaibo, Zulia",
+    rating: 5,
+  },
+];
+---
+
+<BaseLayout
+  title="Reseñas"
+  description={`Lea las reseñas de nuestros clientes de ${brand.name}. Descubra por qué nuestros clientes nos eligen una y otra vez.`}
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: client.name,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: String(reviews.length),
+      bestRating: "5",
+    },
+  }}
+>
+  <Header slot="header" />
+
+  <Banner title="Testimonios" />
+
+  <section class="py-section">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+        <h2 class="font-heading text-h2 font-bold uppercase text-text">
+          Lo que dicen nuestras clientes
+        </h2>
+        <p class="mt-3 text-text-muted leading-relaxed">
+          No tome nuestra palabra como un hecho y escuche a los clientes que
+          hemos ayudado.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          reviews.map(({quote, name, location, rating = 5}) => (
+            <div class="flex flex-col rounded-lg border border-border bg-background p-6 shadow-sm">
+              <div
+                class="mb-4 flex gap-0.5"
+                aria-label={`Rated ${rating} out of 5 stars`}
+              >
+                {Array.from({length: 5}).map((_, i) => (
+                  <svg
+                    class:list={[
+                      "size-5",
+                      i < rating ? "text-accent" : "text-border",
+                    ]}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote class="flex-1 text-text-muted leading-relaxed italic">
+                &ldquo;{quote}&rdquo;
+              </blockquote>
+              <div class="mt-4 border-t border-border pt-4">
+                <p class="font-semibold text-text">{name}</p>
+                <p class="text-sm text-text-muted">{location}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+
+  <Footer slot="footer" />
+</BaseLayout>
