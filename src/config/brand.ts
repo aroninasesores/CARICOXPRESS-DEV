@@ -16,7 +16,9 @@ export const brand = {
   // ── Site Identity ─────────────────────────────F─────────────────────────────
   name: "Caricoxpress",
   tagline: "Envíos",
-  tagline2: "Miami → Caracas",
+  tagline2: "Miami",
+  tagline3: " → ",
+  tagline4: "Caracas",
   description:
     "Infraestructura logística para conectar sus compras y cargas corporativas desde el exterior hasta Venezuela, con tarifas claras y total resguardo.",
   url: "https://caricoxpress.com",

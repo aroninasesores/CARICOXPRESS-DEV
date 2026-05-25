@@ -12,6 +12,8 @@ interface Props {
   topper?: string;
   heading?: string;
   heading2?: string;
+  heading3?: string;
+  heading4?: string;
   description?: string;
   ctaLabel?: string;
   ctaHref?: string;
@@ -25,6 +27,8 @@ const {
   topper = "Transportamos todo tipo de carga",
   heading = brand.tagline,
   heading2 = brand.tagline2,
+  heading3 = brand.tagline3,
+  heading4 = brand.tagline4,
   description = brand.description,
   ctaLabel = "Solicite su presupuesto",
   ctaHref = "https://wa.me/584141018217?text=Hola,%20quisiera%20solicitar%20un%20presupuesto%20para%20un%20env%C3%ADo 📦.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n?",
@@ -55,7 +59,9 @@ const {
       >
         {heading}
         <br />
-        <span class="text-[35px] lg:text-[60px]">{heading2}</span>
+        {heading2}
+        <span class="text-h1">{heading3}</span>
+        {heading4}
       </h1>
 
       <p class="max-w-lg text-lead text-text-muted leading-relaxed">
