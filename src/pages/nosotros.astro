@@ -7,6 +7,8 @@ import CTA from "../components/CTA.astro";
 import {Image} from "astro:assets";
 import {brand} from "../config/brand";
 
+import imagenNosotros from "../assets/images/about/nosotros.png";
+
 const team = [
   {
     name: "Maria Garcia",
@@ -44,7 +46,7 @@ const team = [
     >
       <div class="overflow-hidden rounded-lg shadow-lg">
         <Image
-          src="/src/assets/images/about/nosotros.png"
+          src={imagenNosotros}
           alt="Nuestro equipo trabajando en el almacén de envíos"
           width={800}
           height={600}
