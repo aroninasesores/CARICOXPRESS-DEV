@@ -1,6 +1,7 @@
 ---
 import {brand} from "../config/brand";
 import {client} from "../data/client";
+import Logo from "./logo.astro";
 
 const nav = [
   {label: "Inicio", href: "/"},
@@ -22,12 +23,14 @@ const currentPath = Astro.url.pathname;
     class="mx-auto flex max-w-site items-center justify-between px-4 py-3 sm:px-6"
   >
     <!-- Logo -->
-    <a
+    <!-- <a
       href="/"
       class="font-heading text-xl font-bold uppercase tracking-wide text-primary transition-opacity hover:opacity-80"
     >
       {brand.name}
-    </a>
+    </a> -->
+
+    <Logo />
 
     <!-- Desktop nav -->
     <nav
