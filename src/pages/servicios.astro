@@ -7,6 +7,8 @@ import CTA from "../components/CTA.astro";
 import {brand} from "../config/brand";
 import {Image} from "astro:assets";
 
+import imagenServicios from "../assets/images/services/servicios.png";
+
 const services = [
   {
     title: "Envíos Aéreos Express",
@@ -97,10 +99,10 @@ const icons = [
         transition:name="hero-image"
       >
         <Image
-          src="/src/assets/images/services/servicios.png"
+          src={imagenServicios}
           alt="Buque cargero con contenedores en el mar, simbolizando los servicios de transporte marítimo y logística internacional de Caricoxpress."
-          width="800"
-          height="600"
+          width={800}
+          height={600}
           loading="eager"
           decoding="async"
           class="size-full object-cover"
