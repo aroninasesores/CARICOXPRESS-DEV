@@ -1,27 +1,31 @@
 ---
-// Si este código está en un archivo de componente separado (ej. ContactForm.astro),
-// necesitas definir la interfaz y recibir las props así:
-
 interface Props {
+  title?: string;
+  description?: string;
+  action?: string;
   bgClass?: string;
+  containerClass?: string;
+  buttonText?: string;
 }
 
-const {bgClass = ""} = Astro.props;
+const {
+  title = "¿Listo para enviar? Contáctenos",
+  description = "Escríbanos para solicitar tarifas, aclarar dudas sobre su casillero o cotizar su próximo envío. Le responderemos en menos de 24 horas hábiles.",
+  action = "/contacto/mensaje-enviado",
+  bgClass = "",
+  containerClass = "mx-auto max-w-xl px-4 sm:px-6",
+  buttonText = "Enviar Mensaje",
+} = Astro.props;
 ---
 
-{
-  /* 🟢 OPTIMIZADO: Agregamos la clase dinámica bgClass combinada con py-section */
-}
 <section class={`py-section ${bgClass}`}>
-  <div class="mx-auto max-w-xl gap-10 px-4 sm:px-6 lg:gap-14">
-    <!-- Form -->
-    <div class="lg:col-span-3">
+  <div class={containerClass}>
+    <div>
       <h2 class="font-heading text-h2 font-bold uppercase text-text">
-        ¿Listo para enviar? Contáctenos
+        {title}
       </h2>
-      <p class="mt-2 mb-8 text-text-muted">
-        Escríbanos para solicitar tarifas, aclarar dudas sobre su casillero o
-        cotizar su próximo envío. Le responderemos en menos de 24 horas hábiles.
+      <p class="mt-2 mb-8 text-text-muted text-pretty">
+        {description}
       </p>
 
       <form
@@ -29,7 +33,7 @@ const {bgClass = ""} = Astro.props;
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"
-        action="/contacto/success"
+        action={action}
         class="flex flex-col gap-5"
       >
         <input
@@ -42,7 +46,7 @@ const {bgClass = ""} = Astro.props;
           aria-hidden="true"
         >
           <label>
-            Leave this empty: <input
+            Deje este campo vacío: <input
               name="bot-field"
               tabindex="-1"
               autocomplete="off"
@@ -59,7 +63,6 @@ const {bgClass = ""} = Astro.props;
               *
             </span>
           </span>
-          {/* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 */}
           <input
             type="text"
             name="name"
@@ -78,7 +81,6 @@ const {bgClass = ""} = Astro.props;
               *
             </span>
           </span>
-          {/* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 */}
           <input
             type="email"
             name="email"
@@ -90,7 +92,6 @@ const {bgClass = ""} = Astro.props;
 
         <label class="flex flex-col gap-1.5">
           <span class="text-sm font-medium text-text">Teléfono</span>
-          {/* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 */}
           <input
             type="tel"
             name="phone"
@@ -118,12 +119,11 @@ const {bgClass = ""} = Astro.props;
           </textarea>
         </label>
 
-        {/* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 */}
         <button
           type="submit"
           class="mt-2 inline-flex min-h-11 cursor-pointer items-center justify-center self-start rounded-md bg-accent px-8 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
-          Enviar Mensaje
+          {buttonText}
         </button>
       </form>
     </div>

@@ -12,7 +12,7 @@ const {
   title = "¿Listo para hacer su envío?",
   description = "Contáctenos hoy para una cotización gratuita y sin compromiso. Estamos aquí para ayudarle con cualquier proyecto — grande o pequeño.",
   buttonText = "Obtenga su cotización gratuita",
-  buttonHref = "https://wa.me/584141018217?text=Hola,%20quisiera%20solicitar%20un%20presupuesto%20para%20un%20env%C3%ADo.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n?",
+  buttonHref = client.whatsapp.href,
 } = Astro.props;
 ---
 
@@ -32,6 +32,7 @@ const {
         href={buttonHref}
         class="inline-flex min-h-[44px] gap-x-1 items-center justify-center rounded-md bg-accent px-8 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

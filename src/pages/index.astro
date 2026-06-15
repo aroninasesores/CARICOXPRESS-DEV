@@ -27,13 +27,15 @@ import {client} from "../data/client";
     email: client.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: client.address.lineOne,
+      streetAddress: `${client.address.lineOne} ${client.address.lineTwo}`,
       addressLocality: client.address.city,
       addressRegion: client.address.state,
       postalCode: client.address.zip,
       addressCountry: client.address.country,
     },
     url: client.domain,
+    sameAs: [client.socials.instagram, client.socials.google],
+    areaServed: ["Miami", "Venezuela", "Caracas"],
   }}
 >
   <Header slot="header" />

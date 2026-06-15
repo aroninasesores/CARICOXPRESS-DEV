@@ -85,8 +85,9 @@ const currentPath = Astro.url.pathname;
         {client.phoneFormatted}
       </a>
       <a
-        href="/"
+        href={client.portal.href}
         target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex min-h-11 gap-x-1.5 items-center rounded-md bg-accent px-5 py-2.5 text-sm font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         <svg
@@ -114,7 +115,7 @@ const currentPath = Astro.url.pathname;
           </path>
         </svg>
 
-        Clientes
+        {client.portal.label}
       </a>
     </div>
 
@@ -216,8 +217,9 @@ const currentPath = Astro.url.pathname;
         {client.phoneFormatted}
       </a>
       <a
-        href="/"
+        href={client.portal.href}
         target="_blank"
+        rel="noopener noreferrer"
         class="flex min-h-11 gap-x-1.5 items-center justify-center rounded-md bg-accent px-5 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90"
       >
         <svg
@@ -244,7 +246,7 @@ const currentPath = Astro.url.pathname;
           >
           </path>
         </svg>
-        Clientes
+        {client.portal.label}
       </a>
       <!-- {
         client.license && (
