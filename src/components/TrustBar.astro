@@ -2,7 +2,7 @@
 interface TrustItem {
   label: string;
   value?: string;
-  icon: "calendar" | "warehouse" | "award" | "box"; // Restringimos los nombres para evitar errores de tipeo
+  icon: "calendar" | "warehouse" | "award" | "box";
 }
 
 interface Props {
@@ -11,17 +11,17 @@ interface Props {
 
 const {
   items = [
-    {label: "Salidas Semanales", icon: "calendar"},
-    {label: "Almacenes Propios", icon: "warehouse"},
-    {label: "Años de Experiencia", value: "+10", icon: "award"},
-    {label: "Cargas Entregadas", value: "+5,000", icon: "box"},
+    {label: "Miami → Venezuela", icon: "box"},
+    {label: "Salidas semanales", icon: "calendar"},
+    {label: "Dirección física en Miami", icon: "warehouse"},
+    {label: "Años de experiencia", value: "+10", icon: "award"},
   ],
 } = Astro.props;
 ---
 
 <section
   class="border-y border-border bg-surface"
-  aria-label="Trust signals"
+  aria-label="Señales de confianza"
 >
   <div class="mx-auto max-w-site overflow-x-auto px-4 py-5 sm:px-6 sm:py-6">
     <ul
@@ -31,7 +31,6 @@ const {
       {
         items.map(({label, value, icon}) => (
           <li class="flex shrink-0 items-center gap-2.5 text-sm sm:text-base">
-            {/* CONTENEDOR DINÁMICO DE ÍCONOS DE LUCIDE / HEROICONS */}
             <svg
               class="size-5 shrink-0 text-accent"
               fill="none"

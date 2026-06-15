@@ -3,12 +3,9 @@ import {Image} from "astro:assets";
 import type {ImageMetadata} from "astro";
 import {aboutImage as localAboutImage} from "../config/images";
 
-// Fallback Unsplash URL used until a local image is added to
-// src/assets/images/about/ and registered in src/config/images.ts
 const PLACEHOLDER =
   "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=80";
 
-// 🟢 UNIFICADO: Todas las props viven en una sola interfaz limpia
 interface Props {
   topper?: string;
   heading?: string;
@@ -21,23 +18,22 @@ interface Props {
   bgClass?: string;
 }
 
-// 🟢 UNIFICADO: Una sola asignación de props con sus respectivos fallbacks
 const {
   topper = "Quiénes Somos",
-  heading = "Su aliado logístico con más de 10 años de trayectoria",
+  heading = "Un aliado logístico para sus compras y envíos a Venezuela",
   body = [
-    "Somos una empresa especializada en transporte internacional y gestión aduanera, comprometida con conectar de forma eficiente y segura a nuestros clientes corporativos y particulares con el mercado global.",
-    "Nuestra reputación se ha consolidado gracias a la puntualidad en nuestras salidas semanales, la transparencia absoluta en los costos y un equipo de profesionales dedicados a simplificar la cadena de envíos hacia Venezuela.",
+    "En CaricoXpress ayudamos a personas, familias y negocios a mover paquetes, compras online y carga comercial desde Miami hasta Venezuela con un proceso claro y atención cercana.",
+    "Nuestro enfoque es simple: recibir, organizar, consolidar y despachar su carga con comunicación constante, tarifas claras y opciones adaptadas al tipo de envío.",
   ],
   benefits = [
-    "Infraestructura propia y almacenes físicos en origen",
-    "Tarifas todo incluido sin cargos sorpresa en aduana",
-    "Monitoreo constante y manejo seguro de la carga",
+    "Dirección física en Miami para recibir compras online",
+    "Opciones aéreas y marítimas según urgencia, volumen y presupuesto",
+    "Atención directa para cotizar y resolver dudas antes de enviar",
   ],
-  ctaLabel = "Conozca Más de Nosotros",
+  ctaLabel = "Conozca más de nosotros",
   ctaHref = "/nosotros",
   imageSrc = localAboutImage ?? PLACEHOLDER,
-  imageAlt = "Equipo profesional operando en el puerto con containers de fondo",
+  imageAlt = "Almacén logístico preparado para organizar envíos desde Miami a Venezuela",
   bgClass = "",
 } = Astro.props;
 ---
@@ -46,7 +42,6 @@ const {
   <div
     class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14"
   >
-    <!-- Image -->
     <div class="overflow-hidden rounded-lg shadow-xl shadow-blue-900/30">
       <Image
         src={imageSrc as any}
@@ -59,7 +54,6 @@ const {
       />
     </div>
 
-    <!-- Content -->
     <div class="space-y-5">
       <span class="text-topper font-bold uppercase tracking-widest text-accent">
         {topper}
@@ -74,7 +68,6 @@ const {
         ))
       }
 
-      {/* Benefits list */}
       <ul
         class="space-y-3 pt-2"
         role="list"
@@ -103,9 +96,6 @@ const {
       </ul>
 
       <div class="pt-2">
-        {
-          /* 🟢 OPTIMIZADO: Cambiado min-h-[44px] por min-h-11 como recomendó Tailwind */
-        }
         <a
           href={ctaHref}
           class="inline-flex min-h-11 items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-bold text-primary-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
@@ -123,8 +113,7 @@ const {
               stroke-linejoin="round"
               stroke-width="2"
               d="M17 8l4 4m0 0l-4 4m4-4H3"
-            >
-            </path>
+            />
           </svg>
         </a>
       </div>

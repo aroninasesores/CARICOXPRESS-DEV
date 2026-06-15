@@ -9,25 +9,34 @@ import {organizationSchema, seo} from "../config/seo";
 
 import imagenNosotros from "../assets/images/about/nosotros.png";
 
-const team = [
+const processSteps = [
   {
-    name: "Maria Garcia",
-    role: "CEO & Fundadora",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
+    title: "Recibimos y verificamos",
+    description:
+      "Su carga llega a Miami, la identificamos y revisamos su estado exterior para iniciar el proceso con orden.",
+    iconPath:
+      "M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16zM3.3 7L12 12l8.7-5M12 22V12",
   },
   {
-    name: "Tony Pérez",
-    role: "Gerente de almacén",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
+    title: "Consolidamos su carga",
+    description:
+      "Agrupamos compras y paquetes cuando conviene, optimizando espacio, costos y preparación antes de cada salida.",
+    iconPath:
+      "M4 7h7v7H4zM13 5h7v7h-7zM4 16h7v3H4zM13 14h7v5h-7z",
   },
   {
-    name: "David Suárez",
-    role: "Gerente de operaciones",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+    title: "Despachamos a Venezuela",
+    description:
+      "Coordinamos el traslado aéreo o marítimo y mantenemos comunicación clara hasta la entrega.",
+    iconPath:
+      "M3 6h12v10H3zM15 10h4l2 3v3h-6zM7 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z",
   },
+];
+
+const trustSignals = [
+  "Dirección física en Miami para recibir compras online",
+  "Atención por WhatsApp para cotizaciones y seguimiento",
+  "Procesos pensados para envíos personales y comerciales",
 ];
 ---
 
@@ -40,7 +49,6 @@ const team = [
 
   <Banner title="Sobre CaricoXpress" />
 
-  <!-- Story -->
   <section class="py-section">
     <div
       class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14"
@@ -48,7 +56,7 @@ const team = [
       <div class="overflow-hidden rounded-lg shadow-lg">
         <Image
           src={imagenNosotros}
-          alt="Nuestro equipo trabajando en el almacén de envíos"
+          alt="Área de almacén preparada para organizar envíos y carga internacional"
           width={700}
           height={900}
           loading="lazy"
@@ -69,55 +77,100 @@ const team = [
           distancias se ha transformado en un equipo comprometido y confiable.
           Nos especializamos en la gestión integral de envíos aéreos express,
           carga marítima consolidada y asignación de casilleros internacionales,
-          asegurando que cada paquete llegue a su destino en Venezuela en tiempo
-          récord.
+          asegurando que cada paquete avance hacia su destino en Venezuela con
+          orden, cuidado y comunicación.
         </p>
         <p class="text-text-muted leading-relaxed">
           Sabemos que detrás de cada carga hay un esfuerzo, un negocio o un lazo
-          familiar. Por eso, tratamos tu mercancía con la máxima seguridad,
-          transparencia y el cuidado que merece, respaldando cada servicio con
-          un control de inventario estricto y asesoría personalizada en todo el
-          proceso aduanal.
+          familiar. Por eso, tratamos tu mercancía con seguridad, transparencia
+          y el cuidado que merece, respaldando cada servicio con organización de
+          almacén y asesoría personalizada.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Team -->
   <section class="bg-surface py-section">
     <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="mx-auto mb-10 max-w-2xl text-center">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
         <span
           class="text-topper font-bold uppercase tracking-widest text-accent"
         >
-          Nuestro Equipo
+          Nuestra Forma de Trabajar
         </span>
         <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">
-          Conoce al equipo que lo hace posible
+          Un proceso claro para mover su carga con confianza
         </h2>
+        <p class="mt-3 text-text-muted leading-relaxed text-pretty">
+          Más que mostrar rostros provisionales, preferimos explicar cómo
+          cuidamos cada envío desde que llega a Miami hasta que avanza hacia
+          Venezuela.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
         {
-          team.map(({name, role, image}) => (
-            <div class="overflow-hidden rounded-lg bg-background shadow-sm">
-              <Image
-                src={image}
-                alt={name}
-                width={400}
-                height={400}
-                loading="lazy"
-                class="aspect-square w-full object-cover"
-              />
-              <div class="p-5">
-                <h3 class="font-heading text-lg font-semibold text-text">
-                  {name}
-                </h3>
-                <p class="text-sm text-text-muted">{role}</p>
+          processSteps.map((step, index) => (
+            <div class="rounded-lg border border-border bg-background p-6 shadow-sm">
+              <div class="mb-5 flex items-start justify-between gap-4">
+                <span class="flex size-11 items-center justify-center rounded-md bg-primary text-sm font-bold text-primary-fg">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="flex size-12 items-center justify-center rounded-md bg-accent/10 text-accent">
+                  <svg
+                    class="size-7"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d={step.iconPath}
+                    />
+                  </svg>
+                </span>
               </div>
+              <h3 class="font-heading text-h3 font-semibold text-text">
+                {step.title}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed text-text-muted">
+                {step.description}
+              </p>
             </div>
           ))
         }
+      </div>
+
+      <div class="mt-10 rounded-lg border border-border bg-background p-6 shadow-sm">
+        <h3 class="font-heading text-h3 font-semibold text-text">
+          Lo que puede esperar de CaricoXpress
+        </h3>
+        <ul class="mt-5 grid gap-3 md:grid-cols-3">
+          {
+            trustSignals.map((signal) => (
+              <li class="flex items-start gap-3 text-sm text-text-muted">
+                <svg
+                  class="mt-0.5 size-5 shrink-0 text-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span>{signal}</span>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </div>
   </section>

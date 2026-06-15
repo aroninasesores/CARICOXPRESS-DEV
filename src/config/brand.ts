@@ -1,11 +1,11 @@
 export const brand = {
   name: "CaricoXpress",
-  tagline: "Envíos",
+  tagline: "Envíos puerta a puerta",
   tagline2: "Miami",
   tagline3: " → ",
-  tagline4: "Caracas",
+  tagline4: "Venezuela",
   description:
-    "Infraestructura logística para conectar sus compras y cargas corporativas desde el exterior hasta Venezuela, con tarifas claras y total resguardo.",
+    "Envíos puerta a puerta desde Miami hasta Venezuela para compras, paquetes y carga comercial, con opciones aéreas, marítimas y casillero internacional.",
   url: "https://caricoxpress.com",
   locale: "es_VE",
   fonts: {

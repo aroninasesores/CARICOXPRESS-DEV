@@ -13,11 +13,16 @@ const nav = [
 ];
 
 const currentPath = Astro.url.pathname;
+const normalizePath = (path: string) => path === "/" ? path : path.replace(/\/$/, "");
+const isCurrentPath = (href: string) => {
+  const current = normalizePath(currentPath);
+  const target = normalizePath(href);
+  return target === "/" ? current === "/" : current === target;
+};
 ---
 
 <header
   class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm"
-  transition:persist
 >
   <div
     class="mx-auto flex max-w-site items-center justify-between px-4 py-3 sm:px-6"
@@ -33,9 +38,7 @@ const currentPath = Astro.url.pathname;
     >
       {
         nav.map(({label, href}) => {
-          const isActive =
-            currentPath === href ||
-            (href !== "/" && currentPath.startsWith(href));
+          const isActive = isCurrentPath(href);
           return (
             <a
               href={href}
@@ -174,9 +177,7 @@ const currentPath = Astro.url.pathname;
     >
       {
         nav.map(({label, href}) => {
-          const isActive =
-            currentPath === href ||
-            (href !== "/" && currentPath.startsWith(href));
+          const isActive = isCurrentPath(href);
           return (
             <a
               href={href}
@@ -294,6 +295,17 @@ const currentPath = Astro.url.pathname;
       iconClose.classList.toggle("hidden", !nextOpen);
     };
 
+    function normalizePath(value: string) {
+      if (value === "/") return value;
+      return value.replace(/\/$/, "");
+    }
+
+    function isActivePath(href: string, path: string) {
+      const current = normalizePath(path);
+      const target = normalizePath(href);
+      return target === "/" ? current === "/" : current === target;
+    }
+
     function syncActiveLinks() {
       const path = window.location.pathname;
       const desktopLinks = header.querySelectorAll(
@@ -303,8 +315,7 @@ const currentPath = Astro.url.pathname;
 
       desktopLinks.forEach((link) => {
         const href = link.getAttribute("href") || "";
-        const isActive =
-          href === path || (href !== "/" && path.startsWith(href));
+        const isActive = isActivePath(href, path);
         link.classList.toggle(activeClasses[0], isActive);
         link.classList.toggle(activeClasses[1], isActive);
         link.classList.toggle(inactiveDesktop[0], !isActive);
@@ -315,8 +326,7 @@ const currentPath = Astro.url.pathname;
 
       mobileLinks.forEach((link) => {
         const href = link.getAttribute("href") || "";
-        const isActive =
-          href === path || (href !== "/" && path.startsWith(href));
+        const isActive = isActivePath(href, path);
         link.classList.toggle(activeClasses[0], isActive);
         link.classList.toggle(activeClasses[1], isActive);
         link.classList.toggle(inactiveMobile[0], !isActive);
@@ -346,6 +356,11 @@ const currentPath = Astro.url.pathname;
       setMenuOpen(false);
       syncActiveLinks();
     });
+    document.addEventListener("astro:page-load", () => {
+      setMenuOpen(false);
+      syncActiveLinks();
+    });
+    window.addEventListener("pageshow", syncActiveLinks);
 
     // Ensure mobile drawer can't stay open if viewport changes to desktop.
     window.addEventListener("resize", () => setMenuOpen(false));

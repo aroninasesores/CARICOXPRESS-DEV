@@ -3,6 +3,7 @@ interface ServiceItem {
   title: string;
   description: string;
   href?: string;
+  iconPath: string;
 }
 
 interface Props {
@@ -12,91 +13,34 @@ interface Props {
   services?: ServiceItem[];
 }
 
-const icons = [
-  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plane">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-	<path d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3l4 7" />
-</svg>`,
-  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-ship">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-	<path d="M2 20a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1" />
-	<path d="M4 18l-1 -5h18l-2 4" />
-	<path d="M5 13v-6h8l4 6" />
-	<path d="M7 7v-4h-1" />
-</svg>`,
-  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-mailbox">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-	<path d="M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5" />
-	<path d="M12 11v-8h4l2 2l-2 2h-4" />
-	<path d="M6 15h1" />
-</svg>`,
-  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-packages">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-	<path d="M7 16.5l-5 -3l5 -3l5 3v5.5l-5 3l0 -5.5" />
-	<path d="M2 13.5v5.5l5 3" />
-	<path d="M7 16.545l5 -3.03" />
-	<path d="M17 16.5l-5 -3l5 -3l5 3v5.5l-5 3l0 -5.5" />
-	<path d="M12 19l5 3" />
-	<path d="M17 16.5l5 -3" />
-	<path d="M12 13.5v-5.5l-5 -3l5 -3l5 3v5.5" />
-	<path d="M7 5.03v5.455" />
-	<path d="M12 8l5 -3" />
-</svg>`,
-  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-truck">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-	<path d="M5 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-	<path d="M15 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-	<path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
-</svg>`,
-  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-briefcase">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-	<path d="M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -9" />
-	<path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
-	<path d="M12 12l0 .01" />
-	<path d="M3 13a20 20 0 0 0 18 0" />
-</svg>`,
-];
-
 const {
   topper = "Soluciones Logísticas",
-  heading = "Nuestros Servicios",
-  description = "Contamos con infraestructura propia y salidas constantes para garantizar el traslado seguro de su mercancía desde el exterior hasta Venezuela.",
+  heading = "Elija cómo quiere traer su carga",
+  description = "Concentramos la home en las tres formas más buscadas por nuestros clientes: aéreo, marítimo y casillero en Miami. Las soluciones corporativas viven con más detalle en servicios.",
   services = [
     {
       title: "Envío Aéreo Express",
       description:
-        "La opción más rápida para tus cargas urgentes. Salidas semanales desde Miami y Madrid con entrega directa en Caracas en tiempo récord.",
+        "Para paquetes urgentes, compras personales y mercancía liviana que necesita llegar rápido a Venezuela.",
       href: "/servicios",
+      iconPath:
+        "M16 10h4a2 2 0 010 4h-4l-4 7H9l2-7H7l-2 2H2l2-4-2-4h3l2 2h4L9 3h3l4 7z",
     },
     {
       title: "Envío Marítimo",
       description:
-        "Optimiza tus costos de importación con nuestro servicio marítimo (LCL). Ideal para mercancías voluminosas, pesadas o proyectos de gran escala.",
+        "Ideal para cajas grandes, carga pesada, reposición de inventario y envíos donde conviene optimizar costos.",
       href: "/servicios",
+      iconPath:
+        "M2 20a2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1 2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1 2.4 2.4 0 002 1 2.4 2.4 0 002-1M4 18l-1-5h18l-2 4M5 13V7h8l4 6M7 7V3H6",
     },
     {
       title: "Casillero Internacional",
       description:
-        "Asignación de dirección física en nuestros almacenes de origen para recibir, procesar y reexpedir tus compras personales o corporativas.",
+        "Reciba sus compras online en nuestra dirección de Miami y coordine el envío cuando esté listo.",
       href: "/servicios",
-    },
-    {
-      title: "Consolidación de Carga",
-      description:
-        "Agrupamos múltiples compras de diferentes proveedores en un solo despacho para que ahorres significativamente en el costo final del flete.",
-      href: "/servicios",
-    },
-    {
-      title: "Logística Corporativa",
-      description:
-        "Manejo especializado de contenedores completos para empresas. Nos encargamos de la cadena de suministro desde la fábrica hasta tu almacén.",
-      href: "/servicios",
-    },
-    {
-      title: "Asesoría Aduanera",
-      description:
-        "Gestión documental, clasificación arancelaria y nacionalización de mercancías. Evita demoras y contratiempos legales en los puertos de entrada.",
-      href: "/servicios",
+      iconPath:
+        "M10 21v-6.5a3.5 3.5 0 00-7 0V21h18v-6a4 4 0 00-4-4H6.5M12 11V3h4l2 2-2 2h-4M6 15h1",
     },
   ],
 } = Astro.props;
@@ -104,7 +48,7 @@ const {
 
 <section class="py-section">
   <div class="mx-auto max-w-site px-4 sm:px-6">
-    <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+    <div class="mx-auto mb-10 max-w-3xl text-center lg:mb-14">
       <span class="text-topper font-bold uppercase tracking-widest text-accent">
         {topper}
       </span>
@@ -117,38 +61,42 @@ const {
     </div>
 
     <ul
-      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      class="grid grid-cols-1 gap-6 md:grid-cols-3"
       role="list"
     >
       {
-        services.map((service, i) => (
+        services.map((service) => (
           <li>
             <a
               href={service.href || "/servicios"}
               aria-label={`Conozca nuestros ${service.title}`}
-              class="group flex h-full cursor-pointer flex-col rounded-lg border border-border bg-background p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
+              class="group flex h-full cursor-pointer flex-col rounded-lg border border-border bg-background p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl"
             >
-              <div class="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-fg">
+              <div class="mb-5 flex size-14 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-fg">
                 <svg
-                  class="size-6"
+                  class="size-7"
                   fill="none"
                   stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
-                  set:html={icons[i % icons.length]}
-                />
+                >
+                  <path d={service.iconPath} />
+                </svg>
               </div>
               <h3 class="font-heading text-h3 font-semibold text-text">
                 {service.title}
               </h3>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-text-muted text-pretty">
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-text-muted text-pretty">
                 {service.description}
               </p>
-              <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors group-hover:text-accent">
-                Ver más
-                <span class="sr-only"> about {service.title}</span>
+              <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors group-hover:text-accent">
+                Ver servicio
+                <span class="sr-only"> sobre {service.title}</span>
                 <svg
-                  class="size-4 transition-transform group-hover:translate-x-0.5"
+                  class="size-4 transition-transform group-hover:translate-x-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -158,7 +106,7 @@ const {
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M9 5l7 7-7 7"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
               </span>

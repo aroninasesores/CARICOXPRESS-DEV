@@ -24,18 +24,18 @@ interface Props {
 }
 
 const {
-  topper = "Servicio puerta a puerta",
-  heading = brand.tagline,
-  heading2 = brand.tagline2,
-  heading3 = brand.tagline3,
-  heading4 = brand.tagline4,
-  description = brand.description,
+  topper = "Envíos Miami → Venezuela",
+  heading = "Envíos",
+  heading2 = "puerta a puerta",
+  heading3 = "Miami → Venezuela",
+  heading4 = "",
+  description = "Traiga sus compras, paquetes y carga comercial desde Miami hasta Venezuela con opciones aéreas, marítimas, casillero y atención directa por WhatsApp.",
   ctaLabel = "Solicite su presupuesto",
   ctaHref = client.whatsapp.href,
-  secondaryLabel = "Nuestras Tarifas",
-  secondaryHref = "/#tarifas",
+  secondaryLabel = "Ver servicios",
+  secondaryHref = "/servicios",
   imageSrc = localHeroImage ?? PLACEHOLDER,
-  imageAlt = "Professional tradesperson at work",
+  imageAlt = "Operación logística para envíos puerta a puerta entre Miami y Venezuela",
 } = Astro.props;
 ---
 
@@ -57,11 +57,16 @@ const {
         class="font-heading text-display font-bold uppercase leading-none tracking-tight text-text"
         transition:name="hero-heading"
       >
-        {heading}
-        <br />
-        {heading2}
-        <span class="text-h1">{heading3}</span>
-        {heading4}
+        <span class="block">{heading}</span>
+        {heading2 && <span class="block">{heading2}</span>}
+        {
+          (heading3 || heading4) && (
+            <span class="block whitespace-nowrap text-[clamp(1.75rem,8.5vw,3.5rem)] sm:text-[clamp(2.25rem,4.2vw,3.5rem)]">
+              {heading3}
+              {heading4}
+            </span>
+          )
+        }
       </h1>
 
       <p class="max-w-lg text-lead text-text-muted leading-relaxed">
