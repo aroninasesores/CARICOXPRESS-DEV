@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CTA from "../components/CTA.astro";
+import {absoluteUrl} from "../config/seo";
 
 interface Props {
   title: string;
@@ -13,16 +14,35 @@ interface Props {
 
 const {title, description, date, author = "Team"} = Astro.props;
 
-const formattedDate = date.toLocaleDateString("en-US", {
+const formattedDate = date.toLocaleDateString("es-VE", {
   year: "numeric",
   month: "long",
   day: "numeric",
 });
+
+const postUrl = new URL(Astro.url.pathname, Astro.site ?? absoluteUrl("/"));
+const postSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished: date.toISOString(),
+  dateModified: date.toISOString(),
+  author: {
+    "@type": "Organization",
+    name: author,
+  },
+  publisher: {
+    "@id": absoluteUrl("/#organization"),
+  },
+  mainEntityOfPage: postUrl.toString(),
+};
 ---
 
 <BaseLayout
   title={title}
   description={description}
+  schema={postSchema}
 >
   <Header slot="header" />
 

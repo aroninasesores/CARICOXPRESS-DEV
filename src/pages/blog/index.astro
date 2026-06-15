@@ -5,7 +5,7 @@ import Footer from "../../components/Footer.astro";
 import Banner from "../../components/Banner.astro";
 import CTA from "../../components/CTA.astro";
 import {getCollection} from "astro:content";
-import {brand} from "../../config/brand";
+import {seo} from "../../config/seo";
 
 const posts = (await getCollection("blog", ({data}) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
@@ -13,8 +13,8 @@ const posts = (await getCollection("blog", ({data}) => !data.draft)).sort(
 ---
 
 <BaseLayout
-  title="Blog"
-  description={`Tips, guías, noticias y consejos sobre cómo importar con ${brand.name} hacia Venezuela.`}
+  title={seo.blog.title}
+  description={seo.blog.description}
 >
   <Header slot="header" />
 
@@ -30,7 +30,7 @@ const posts = (await getCollection("blog", ({data}) => !data.draft)).sort(
         ) : (
           <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => {
-              const formattedDate = post.data.date.toLocaleDateString("en-US", {
+              const formattedDate = post.data.date.toLocaleDateString("es-VE", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",

@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Banner from "../components/Banner.astro";
 import CTA from "../components/CTA.astro";
-import {brand} from "../config/brand";
+import {seo, servicePageSchema} from "../config/seo";
 import {Image} from "astro:assets";
 
 import imagenServicios from "../assets/images/services/servicios.png";
@@ -56,12 +56,13 @@ const icons = [
 ---
 
 <BaseLayout
-  title="Servicios"
-  description={`Explore la amplia gama de servicios ofrecidos por ${brand.name}. Desde envíos aéreos express hasta soluciones de carga marítima, asignación de casilleros internacionales y servicios personalizados de prealerta y consolidación. Descubra cómo podemos ayudarlo a optimizar su logística y garantizar el éxito de cada envío.`}
+  title={seo.services.title}
+  description={seo.services.description}
+  schema={servicePageSchema}
 >
   <Header slot="header" />
 
-  <Banner title="Nuestros Servicios" />
+  <Banner title="Servicios de Envíos Miami Venezuela" />
 
   <section>
     <div
@@ -71,12 +72,13 @@ const icons = [
         class="flex flex-col items-center mx-auto mb-10 max-w-2xl gap-y-4 text-center lg:mb-14"
       >
         <h2 class="font-heading text-h2 font-bold uppercase text-text">
-          Qué podemos hacer por usted
+          Envíos Miami Venezuela y soluciones logísticas
         </h2>
         <p class="mt-3 text-text-muted leading-relaxed">
-          Ninguna carga es demasiado grande o pequeña para nuestro equipo de
-          transporte. Ya sea que necesite importar un teléfono o o realizar una
-          mudanza completa, estamos aquí para ayudarlo en cada paso del proceso.
+          Movilizamos compras personales, paquetes comerciales y carga
+          consolidada desde Miami hacia Venezuela. Ya sea que necesite un envío
+          aéreo express, carga marítima, casillero internacional o consolidación
+          de paquetes, estamos aquí para ayudarlo en cada paso del proceso.
         </p>
         <a
           href="#nuestros-servicios"

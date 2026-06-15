@@ -12,30 +12,15 @@ import Gallery from "../components/Gallery.astro";
 import Faq from "../components/Faq.astro";
 import Form from "../components/Form.astro";
 import CTAHome from "../components/CTA Home.astro";
-import {brand} from "../config/brand";
-import {client} from "../data/client";
+import {localBusinessSchema, seo, websiteSchema} from "../config/seo";
 ---
 
 <BaseLayout
-  title={brand.name}
-  description={brand.description}
+  title={seo.home.title}
+  description={seo.home.description}
   schema={{
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: client.name,
-    telephone: client.phoneForTel,
-    email: client.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: `${client.address.lineOne} ${client.address.lineTwo}`,
-      addressLocality: client.address.city,
-      addressRegion: client.address.state,
-      postalCode: client.address.zip,
-      addressCountry: client.address.country,
-    },
-    url: client.domain,
-    sameAs: [client.socials.instagram, client.socials.google],
-    areaServed: ["Miami", "Venezuela", "Caracas"],
+    "@graph": [localBusinessSchema, websiteSchema],
   }}
 >
   <Header slot="header" />

@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 import Banner from "../components/Banner.astro";
 import CTA from "../components/CTA.astro";
 import {Image} from "astro:assets";
-import {brand} from "../config/brand";
+import {organizationSchema, seo} from "../config/seo";
 
 import imagenNosotros from "../assets/images/about/nosotros.png";
 
@@ -32,12 +32,13 @@ const team = [
 ---
 
 <BaseLayout
-  title="Nosotros"
-  description={`Aprenda sobre ${brand.name} — nuestra historia, equipo y compromiso con el servicio de calidad.`}
+  title={seo.about.title}
+  description={seo.about.description}
+  schema={organizationSchema}
 >
   <Header slot="header" />
 
-  <Banner title="Acerca de" />
+  <Banner title="Sobre CaricoXpress" />
 
   <!-- Story -->
   <section class="py-section">

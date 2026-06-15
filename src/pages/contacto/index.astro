@@ -4,13 +4,14 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Banner from "../../components/Banner.astro";
 import Form from "../../components/Form.astro";
-import {brand} from "../../config/brand";
+import {localBusinessSchema, seo} from "../../config/seo";
 import {client} from "../../data/client";
 ---
 
 <BaseLayout
-  title="Contacto"
-  description={`Póngase en contacto con ${brand.name}. Solicite una cotización gratuita o háganos una pregunta.`}
+  title={seo.contact.title}
+  description={seo.contact.description}
+  schema={localBusinessSchema}
 >
   <Header slot="header" />
 

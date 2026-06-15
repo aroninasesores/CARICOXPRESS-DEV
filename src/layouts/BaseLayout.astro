@@ -27,6 +27,7 @@ const {
 
 const pageTitle = title === brand.name ? title : `${title} — ${brand.name}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
+const imageURL = new URL(image, Astro.site ?? brand.url);
 ---
 
 <html
@@ -73,7 +74,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
     />
     <meta
       property="og:image"
-      content={image}
+      content={imageURL}
     />
     <meta
       property="og:locale"
@@ -95,7 +96,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
     />
     <meta
       name="twitter:image"
-      content={image}
+      content={imageURL}
     />
 
     <!-- Favicon -->

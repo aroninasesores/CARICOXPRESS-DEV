@@ -4,8 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Banner from "../components/Banner.astro";
 import CTA from "../components/CTA.astro";
-import {brand} from "../config/brand";
-import {client} from "../data/client";
+import {localBusinessSchema, seo} from "../config/seo";
 
 const reviews = [
   {
@@ -54,19 +53,9 @@ const reviews = [
 ---
 
 <BaseLayout
-  title="Reseñas"
-  description={`Lea las reseñas de nuestros clientes de ${brand.name}. Descubra por qué nuestros clientes nos eligen una y otra vez.`}
-  schema={{
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: client.name,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: String(reviews.length),
-      bestRating: "5",
-    },
-  }}
+  title={seo.reviews.title}
+  description={seo.reviews.description}
+  schema={localBusinessSchema}
 >
   <Header slot="header" />
 
