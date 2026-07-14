@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   buttonText?: string;
   buttonHref?: string;
+  bgClass?: string;
 }
 
 const {
@@ -13,15 +14,16 @@ const {
   description = "Escríbanos o llámenos a nuestro número de contacto y un asesor le atenderá al instante para ayudarle.",
   buttonText = "Resuelva sus dudas inmediatamente",
   buttonHref = client.whatsapp.href,
+  bgClass = "bg-background",
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-primary py-16 sm:py-20 lg:py-24">
+<section class:list={["relative overflow-hidden py-16 sm:py-20 lg:py-24", bgClass]}>
   <div class="mx-auto max-w-site px-4 text-center sm:px-6">
-    <h2 class="font-heading text-h2 font-bold uppercase text-primary-fg">
+    <h2 class="font-heading text-h2 font-bold uppercase text-text">
       {title}
     </h2>
-    <p class="mx-auto mt-4 max-w-xl text-primary-fg/80 leading-relaxed">
+    <p class="mx-auto mt-4 max-w-xl text-text-muted leading-relaxed">
       {description}
     </p>
 
@@ -55,7 +57,7 @@ const {
       </a>
       <a
         href={`tel:${client.phoneForTel}`}
-        class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md border-2 border-primary-fg/30 px-8 py-3 text-base font-bold text-primary-fg transition-colors hover:border-primary-fg hover:bg-primary-fg/10"
+        class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md border-2 border-primary px-8 py-3 text-base font-bold text-primary transition-colors hover:bg-primary/5"
       >
         <svg
           class="size-5"
