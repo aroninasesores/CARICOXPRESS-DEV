@@ -31,13 +31,15 @@
     "test:report": "playwright show-report"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.1",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^6.0.4",
     "astro-robots-txt": "^1.0.0",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.1",
+    "typescript": "^7.0.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2"

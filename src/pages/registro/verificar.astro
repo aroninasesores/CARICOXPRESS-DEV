@@ -1,0 +1,202 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Banner from "../../components/Banner.astro";
+---
+
+<BaseLayout
+  title="Activar casillero CaricoXpress"
+  description="Confirma la activacion de tu casillero internacional CaricoXpress."
+>
+  <Header slot="header" />
+
+  <Banner title="Activar casillero internacional" />
+
+  <section class="bg-background py-section">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <div class="rounded-lg border border-border bg-background p-6 text-center shadow-sm sm:p-8">
+        <p class="text-sm font-bold uppercase text-accent">
+          Activacion de casillero
+        </p>
+        <h1 class="mt-3 font-heading text-h2 font-bold uppercase text-text">
+          Activa tu casillero CaricoXpress
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl leading-relaxed text-text-muted">
+          Tu registro esta listo para ser confirmado. Al activar tu casillero
+          generaremos tu codigo CaricoXpress y los datos que utilizaras para
+          identificar tus compras y envios en Miami.
+        </p>
+        <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-text-muted">
+          La activacion debe realizarse desde el enlace que recibiste por
+          correo.
+        </p>
+
+        <div
+          id="verification-status"
+          class="mx-auto mt-6 hidden max-w-2xl rounded-md border px-4 py-3 text-sm"
+          role="status"
+          aria-live="polite"
+          tabindex="-1"
+        >
+        </div>
+
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <button
+            id="activate-locker"
+            type="button"
+            class="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-md bg-accent px-8 py-3 text-base font-bold uppercase text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            <span data-label-idle>Activar mi casillero</span>
+            <span
+              data-label-loading
+              class="hidden"
+            >
+              Activando tu casillero...
+            </span>
+          </button>
+          <a
+            id="registration-link"
+            href="/registro"
+            class="hidden inline-flex min-h-11 items-center justify-center rounded-md border-2 border-primary px-8 py-3 text-base font-bold text-primary transition-colors hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            Iniciar registro
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script>
+  (() => {
+    const publicApiUrl = import.meta.env.PUBLIC_API_URL;
+    const verificationEndpoint = publicApiUrl
+      ? `${publicApiUrl.replace(/\/$/, "")}/api/public/registrations/verify`
+      : "";
+
+    const invalidLinkMessage =
+      "No pudimos validar este enlace de activacion. Solicita un nuevo registro desde la pagina de creacion de casillero.";
+    const unavailableLinkMessage =
+      "Este enlace de activacion no es valido o ya no esta disponible. Puedes iniciar nuevamente el registro para recibir un nuevo enlace.";
+    const genericErrorMessage =
+      "No pudimos completar la activacion en este momento. Intenta nuevamente en unos minutos.";
+
+    const activateButton = document.getElementById("activate-locker");
+    const status = document.getElementById("verification-status");
+    const registrationLink = document.getElementById("registration-link");
+    const idleLabel = activateButton?.querySelector("[data-label-idle]");
+    const loadingLabel = activateButton?.querySelector("[data-label-loading]");
+
+    if (!(activateButton instanceof HTMLButtonElement)) return;
+
+    const token = new URLSearchParams(window.location.search).get("token")?.trim() ?? "";
+
+    const setStatus = (message, type) => {
+      if (!status) return;
+
+      status.textContent = message;
+      status.classList.remove(
+        "hidden",
+        "border-red-200",
+        "bg-red-50",
+        "text-red-700",
+        "border-blue-200",
+        "bg-blue-50",
+        "text-blue-700",
+      );
+
+      if (type === "info") {
+        status.classList.add("border-blue-200", "bg-blue-50", "text-blue-700");
+      } else {
+        status.classList.add("border-red-200", "bg-red-50", "text-red-700");
+      }
+    };
+
+    const focusStatus = () => {
+      if (status instanceof HTMLElement) {
+        status.focus();
+      }
+    };
+
+    const setLoading = (isLoading) => {
+      activateButton.disabled = isLoading;
+      idleLabel?.classList.toggle("hidden", isLoading);
+      loadingLabel?.classList.toggle("hidden", !isLoading);
+    };
+
+    const showRegistrationLink = () => {
+      registrationLink?.classList.remove("hidden");
+    };
+
+    const disableActivation = () => {
+      activateButton.disabled = true;
+      activateButton.classList.add("hidden");
+      showRegistrationLink();
+    };
+
+    const readJsonResponse = async (response) => {
+      try {
+        return await response.json();
+      } catch {
+        return null;
+      }
+    };
+
+    if (!token) {
+      disableActivation();
+      setStatus(invalidLinkMessage, "error");
+      focusStatus();
+      return;
+    }
+
+    activateButton.addEventListener("click", async () => {
+      if (activateButton.disabled) return;
+
+      if (!verificationEndpoint) {
+        setStatus(genericErrorMessage, "error");
+        focusStatus();
+        return;
+      }
+
+      setLoading(true);
+      setStatus("Estamos activando tu casillero...", "info");
+
+      try {
+        const response = await fetch(verificationEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({token}),
+        });
+        const data = await readJsonResponse(response);
+
+        if (response.ok && data?.success === true) {
+          window.location.assign("/mi-casillero?registro=exitoso");
+          return;
+        }
+
+        if (response.status >= 400 && response.status < 500) {
+          disableActivation();
+          setStatus(unavailableLinkMessage, "error");
+          focusStatus();
+          return;
+        }
+
+        console.error("Unexpected verification response", response.status);
+        setStatus(genericErrorMessage, "error");
+        focusStatus();
+        setLoading(false);
+      } catch (error) {
+        console.error("Verification request failed", error);
+        setStatus(genericErrorMessage, "error");
+        focusStatus();
+        setLoading(false);
+      }
+    });
+  })();
+</script>
