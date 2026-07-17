@@ -252,6 +252,13 @@ const fieldClass =
                 >
                   Copiar datos de envío
                 </button>
+                <button
+                  id="close-locker"
+                  type="button"
+                  class="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center rounded-md border-2 border-primary px-6 py-3 text-sm font-bold text-primary transition-colors hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                >
+                  Cerrar casillero
+                </button>
               </div>
               <p
                 id="copy-shipping-status"
@@ -319,6 +326,7 @@ const fieldClass =
     const copyCodeStatus = document.getElementById("copy-code-status");
     const copyShippingButton = document.getElementById("copy-shipping");
     const copyShippingStatus = document.getElementById("copy-shipping-status");
+    const closeLockerButton = document.getElementById("close-locker");
 
     if (!(form instanceof HTMLFormElement)) return;
     if (!(submitButton instanceof HTMLButtonElement)) return;
@@ -548,6 +556,9 @@ const fieldClass =
 
     copyShippingButton?.addEventListener("click", () => {
       copyText(getShippingCopyText(), "Datos de envío copiados", copyShippingStatus);
+    });
+    closeLockerButton?.addEventListener("click", () => {
+      window.location.replace("/mi-casillero");
     });
   })();
 </script>
