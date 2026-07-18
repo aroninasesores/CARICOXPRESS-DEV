@@ -143,13 +143,32 @@ const imageURL = new URL(image, Astro.site ?? brand.url);
       })();
     </script>
 
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-3FCD3Y0JCN"
+    >
+    </script>
+
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+      gtag("config", "G-3FCD3Y0JCN");
+    </script>
+
     <slot name="head" />
     <ClientRouter />
   </head>
 
   <body class="bg-background text-text font-body antialiased">
     <a
-      class="sr-only focus:not-sr-only focus:absolute focus:z-[99999] focus:bg-primary focus:text-primary-fg focus:px-4 focus:py-2 focus:rounded-md"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-99999 focus:bg-primary focus:text-primary-fg focus:px-4 focus:py-2 focus:rounded-md"
       href="#main"
     >
       Skip to main content
