@@ -484,16 +484,62 @@ const venezuelanStates = [
                   *
                 </span>
               </span>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autocomplete="new-password"
-                required
-                minlength="8"
-                class={fieldClass}
-                aria-describedby="password-error"
-              />
+              <div class="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="new-password"
+                  required
+                  minlength="8"
+                  class={`${fieldClass} w-full !pr-12`}
+                  aria-describedby="password-error"
+                />
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 inline-flex min-h-11 w-11 cursor-pointer items-center justify-center rounded-r-md text-text-muted transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  data-password-toggle="password"
+                  aria-label="Mostrar contraseña"
+                  title="Mostrar contraseña"
+                  aria-pressed="false"
+                >
+                  <svg
+                    data-password-show-icon
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg
+                    data-password-hide-icon
+                    aria-hidden="true"
+                    class="hidden"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M10.733 5.076A10.744 10.744 0 0 1 12 5c7 0 10 7 10 7a13.163 13.163 0 0 1-1.67 2.68"></path>
+                    <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                    <path d="M2 2l20 20"></path>
+                    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+                  </svg>
+                </button>
+              </div>
               <span
                 id="password-error"
                 data-error-for="password"
@@ -515,16 +561,62 @@ const venezuelanStates = [
                   *
                 </span>
               </span>
-              <input
-                id="password_confirmation"
-                name="password_confirmation"
-                type="password"
-                autocomplete="new-password"
-                required
-                minlength="8"
-                class={fieldClass}
-                aria-describedby="password_confirmation-error"
-              />
+              <div class="relative">
+                <input
+                  id="password_confirmation"
+                  name="password_confirmation"
+                  type="password"
+                  autocomplete="new-password"
+                  required
+                  minlength="8"
+                  class={`${fieldClass} w-full !pr-12`}
+                  aria-describedby="password_confirmation-error"
+                />
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 inline-flex min-h-11 w-11 cursor-pointer items-center justify-center rounded-r-md text-text-muted transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  data-password-toggle="password_confirmation"
+                  aria-label="Mostrar contraseña"
+                  title="Mostrar contraseña"
+                  aria-pressed="false"
+                >
+                  <svg
+                    data-password-show-icon
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg
+                    data-password-hide-icon
+                    aria-hidden="true"
+                    class="hidden"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M10.733 5.076A10.744 10.744 0 0 1 12 5c7 0 10 7 10 7a13.163 13.163 0 0 1-1.67 2.68"></path>
+                    <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                    <path d="M2 2l20 20"></path>
+                    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+                  </svg>
+                </button>
+              </div>
               <span
                 id="password_confirmation-error"
                 data-error-for="password_confirmation"
@@ -638,6 +730,49 @@ const venezuelanStates = [
     if (!(form instanceof HTMLFormElement)) return;
     if (form.dataset.registrationInit === "true") return;
     form.dataset.registrationInit = "true";
+
+    const initializePasswordToggles = () => {
+      document
+        .querySelectorAll("[data-password-toggle]")
+        .forEach((toggle: Element) => {
+          if (!(toggle instanceof HTMLButtonElement)) return;
+          if (toggle.dataset.passwordToggleInitialized === "true") return;
+
+          const inputId = toggle.dataset.passwordToggle;
+          if (!inputId) return;
+
+          const input = document.getElementById(inputId);
+          if (!(input instanceof HTMLInputElement)) return;
+
+          const showIcon = toggle.querySelector("[data-password-show-icon]");
+          const hideIcon = toggle.querySelector("[data-password-hide-icon]");
+
+          const updateToggleState = (isVisible: boolean) => {
+            toggle.setAttribute(
+              "aria-label",
+              isVisible ? "Ocultar contraseña" : "Mostrar contraseña",
+            );
+            toggle.setAttribute(
+              "title",
+              isVisible ? "Ocultar contraseña" : "Mostrar contraseña",
+            );
+            toggle.setAttribute("aria-pressed", isVisible ? "true" : "false");
+            showIcon?.classList.toggle("hidden", isVisible);
+            hideIcon?.classList.toggle("hidden", !isVisible);
+          };
+
+          toggle.addEventListener("click", () => {
+            const shouldShowPassword = input.type === "password";
+            input.type = shouldShowPassword ? "text" : "password";
+            updateToggleState(shouldShowPassword);
+          });
+
+          updateToggleState(input.type === "text");
+          toggle.dataset.passwordToggleInitialized = "true";
+        });
+    };
+
+    initializePasswordToggles();
 
     const submitButton = document.getElementById("registration-submit");
     const status = document.getElementById("registration-status");
