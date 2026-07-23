@@ -101,9 +101,12 @@ test.describe('Performance / Speed Score', () => {
     await page.goto('/');
 
     const renderBlockingCount = await page.evaluate(() => {
+      type ResourceTimingWithRenderBlockingStatus = PerformanceResourceTiming & {
+        renderBlockingStatus?: string;
+      };
       const resources = performance.getEntriesByType(
         'resource',
-      ) as PerformanceResourceTiming[];
+      ) as ResourceTimingWithRenderBlockingStatus[];
       return resources.filter(
         (r) =>
           r.renderBlockingStatus === 'blocking' &&
