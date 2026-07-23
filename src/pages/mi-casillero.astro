@@ -3,18 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Banner from "../components/Banner.astro";
-
-const shippingFields = [
-  ["recipient_name", "Nombre / Recipient"],
-  ["locker_code", "Código de casillero"],
-  ["address_line_1", "Dirección / Address"],
-  ["address_line_2", "Address Line 2"],
-  ["city", "Ciudad / City"],
-  ["state", "Estado / State"],
-  ["postal_code", "ZIP Code"],
-  ["country", "País / Country"],
-  ["phone", "Teléfono / Phone"],
-];
+import Logo from "../components/logo.astro";
 
 const fieldClass =
   "min-h-11 rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20";
@@ -164,191 +153,189 @@ const fieldClass =
         id="locker-content"
         class="hidden"
       >
-        <div class="mx-auto max-w-3xl text-center">
-          <p class="text-sm font-bold uppercase text-accent">
-            Casillero activo
-          </p>
-          <h1 class="mt-3 font-heading text-h2 font-bold uppercase text-text">
-            Bienvenido a tu casillero en CaricoXpress
-          </h1>
-          <p class="mx-auto mt-4 max-w-2xl leading-relaxed text-text-muted">
-            Utiliza estos datos al realizar tus compras y envíos hacia nuestra
-            dirección en Miami.
-          </p>
-        </div>
-
-        <div class="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-5">
-          <div class="lg:col-span-2">
+        <article
+          class="mx-auto max-w-4xl overflow-hidden rounded-xl border border-border bg-background shadow-xl shadow-primary/10"
+          aria-labelledby="locker-card-title"
+        >
+          <header class="bg-primary px-6 py-6 text-primary-fg sm:px-8">
             <div
-              class="overflow-hidden rounded-lg border border-border bg-primary text-primary-fg shadow-sm"
+              class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
             >
-              <div class="border-b border-primary-fg/20 p-6">
-                <p class="font-heading text-xl font-bold uppercase">
-                  Carico Xpress
-                </p>
+              <div class="rounded-md bg-white px-3 py-2 shadow-sm">
+                <Logo />
               </div>
-              <div class="p-6">
+              <div class="sm:text-right">
                 <p
-                  id="card-customer-name"
-                  class="text-sm font-bold uppercase tracking-wider text-primary-fg/70"
+                  id="locker-card-title"
+                  class="font-heading text-2xl font-bold uppercase tracking-wide"
                 >
+                  Carnet de casillero
                 </p>
-                <p class="mt-8 text-sm font-bold uppercase text-primary-fg/70">
-                  Tu casillero
+                <span
+                  class="mt-3 inline-flex rounded-full border border-primary-fg/30 bg-green-600 shadow-sm shadow-green-400 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-fg"
+                >
+                  Casillero activo
+                </span>
+              </div>
+            </div>
+          </header>
+
+          <div class="bg-surface px-6 py-8 sm:px-8 lg:px-10">
+            <section
+              class="grid grid-cols-1 gap-6 border-b border-border pb-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end"
+              aria-labelledby="locker-owner-title"
+            >
+              <div>
+                <p
+                  id="locker-owner-title"
+                  class="text-xs font-bold uppercase tracking-wider text-accent"
+                >
+                  Nombre del cliente
+                </p>
+                <h2
+                  id="card-customer-name"
+                  class="mt-3 font-heading text-3xl font-bold text-text sm:text-4xl"
+                >
+                </h2>
+                <div class="mt-6 w-full md:max-w-2xl">
+                  <p
+                    class="mb-2 text-xs font-bold uppercase tracking-wider text-text-muted"
+                  >
+                    Código de cliente
+                  </p>
+                  <p
+                    id="shipping-warehouse_reference"
+                    class="mt-1 break-words rounded-md border-l-4 border-accent bg-background px-4 py-3 font-heading text-lg font-bold text-primary"
+                  >
+                  </p>
+                </div>
+              </div>
+              <div
+                class="rounded-lg border border-primary/15 bg-background p-5 shadow-sm"
+              >
+                <p
+                  class="text-xs font-bold uppercase tracking-wider text-text-muted"
+                >
+                  N.º de casillero
                 </p>
                 <p
                   id="card-locker-code"
-                  class="mt-2 font-heading text-4xl font-bold uppercase tracking-wide text-primary-fg sm:text-5xl"
-                >
-                </p>
-                <button
-                  id="copy-code"
-                  type="button"
-                  class="mt-6 inline-flex min-h-11 cursor-pointer items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                >
-                  Copiar código
-                </button>
-                <p
-                  id="copy-code-status"
-                  class="mt-3 min-h-5 text-sm text-primary-fg/80"
-                  aria-live="polite"
+                  class="mt-2 break-words font-heading text-5xl font-black leading-none text-primary sm:text-6xl"
                 >
                 </p>
               </div>
-            </div>
+            </section>
 
-            <div class="mt-6 rounded-lg border border-border bg-surface p-5">
-              <h2 class="font-heading text-lg font-semibold text-text">
-                Cómo usar tus identificadores
-              </h2>
-              <p
-                id="warehouse-id-note"
-                class="mt-3 text-sm leading-relaxed text-text-muted"
-              >
-              </p>
-              <p
-                id="locker-code-note"
-                class="mt-2 text-sm leading-relaxed text-text-muted"
-              >
-              </p>
-            </div>
-          </div>
-
-          <div class="lg:col-span-3">
-            <div
-              class="rounded-lg border border-border bg-background p-6 shadow-sm sm:p-8"
+            <section
+              class="grid grid-cols-1 gap-8 py-8 lg:grid-cols-[1fr_1.05fr]"
+              aria-labelledby="shipping-data-title"
             >
-              <div
-                class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"
-              >
-                <div>
-                  <h2 class="font-heading text-h3 font-semibold text-text">
-                    Datos para comprar y enviar
-                  </h2>
-                  <p class="mt-2 text-sm leading-relaxed text-text-muted">
-                    Utiliza estos datos cuando realices compras en tiendas de
-                    Estados Unidos. Tu código de casillero permite identificar
-                    correctamente tus paquetes al llegar a CaricoXpress.
-                  </p>
-                </div>
-                <button
-                  id="copy-shipping"
-                  type="button"
-                  class="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              <div>
+                <h2
+                  id="shipping-data-title"
+                  class="font-heading text-2xl font-bold text-text"
                 >
-                  Copiar datos de envío
-                </button>
-                <button
-                  id="close-locker"
-                  type="button"
-                  class="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center rounded-md border-2 border-primary px-6 py-3 text-sm font-bold text-primary transition-colors hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                >
-                  Cerrar casillero
-                </button>
-              </div>
-              <p
-                id="copy-shipping-status"
-                class="mt-3 min-h-5 text-sm text-text-muted"
-                aria-live="polite"
-              >
-              </p>
+                  Datos para compras y envíos
+                </h2>
+                <p class="mt-3 leading-relaxed text-text-muted">
+                  Usa estos datos exactamente como aparecen al comprar en
+                  tiendas de Estados Unidos o al enviar paquetes al almacén en
+                  Miami.
+                </p>
 
-              <dl class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {
-                  shippingFields.map(([key, label]) => (
-                    <div
-                      class="rounded-md border border-border bg-surface p-4"
-                      data-shipping-row={key}
-                    >
-                      <dt class="text-xs font-bold uppercase tracking-wider text-text-muted">
-                        {label}
-                      </dt>
-                      <dd
-                        id={`shipping-${key}`}
-                        class="mt-1 wrap-break-word text-base font-semibold text-text"
-                      ></dd>
-                    </div>
-                  ))
-                }
-              </dl>
-            </div>
+
+
+              </div>
+
+              <div
+                class="rounded-lg border border-border bg-background p-6 shadow-sm"
+                aria-labelledby="postal-block-title"
+              >
+                <p
+                  id="postal-block-title"
+                  class="text-xs font-bold uppercase tracking-wider text-accent"
+                >
+                  Dirección de su warehouse en CaricoXpress
+                </p>
+                <div
+                  class="mt-4 rounded-md bg-primary px-5 py-5 font-mono text-base leading-8 text-primary-fg shadow-inner sm:text-lg"
+                >
+
+
+
+
+                  <p
+                    id="postal-address_line_1"
+                    class="break-words"
+                  >
+                  </p>
+                  <p>
+                    <span id="postal-city"></span><span id="postal-city-comma">
+                      ,
+                    </span><span id="postal-state"></span>
+                    <span id="postal-postal_code"></span>
+                  </p>
+                  <p id="postal-country"></p>
+
+                </div>
+              </div>
+            </section>
           </div>
-        </div>
+
+          <footer
+            class="flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end"
+          >
+
+
+            <button
+              id="close-locker"
+              type="button"
+              class="inline-flex min-h-11 cursor-pointer mx-4 items-center justify-center rounded-md border border-border px-5 py-3 text-sm font-bold text-text transition-colors hover:bg-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.5em"
+                height="1.5em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                >
+                </path>
+                <path
+                  fill="currentColor"
+                  d="m17 8l-1.41 1.41L17.17 11H9v2h8.17l-1.58 1.58L17 16l4-4zM5 5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h7v-2H5z"
+                >
+                </path>
+              </svg>
+
+              Cerrar casillero
+            </button>
+          </footer>
+        </article>
       </div>
     </div>
   </section>
 
   <Footer slot="footer" />
 </BaseLayout>
-
 <script>
   (() => {
-    type ShippingDataKey =
-      | "recipient_name"
-      | "locker_code"
-      | "address_line_1"
-      | "address_line_2"
-      | "city"
-      | "state"
-      | "postal_code"
-      | "country"
-      | "phone";
-
     interface ShippingData {
-      recipient_name: string;
-      locker_code: string;
+      warehouse_reference: string;
       address_line_1: string;
-      address_line_2: string;
       city: string;
       state: string;
       postal_code: string;
       country: string;
-      phone: string;
-    }
-
-    interface LockerInstructions {
-      use_locker_code?: boolean;
-      use_customer_name?: boolean;
     }
 
     interface LockerAccessResponse {
       customer_name: string;
       locker_code: string;
       shipping_data: ShippingData;
-      instructions?: LockerInstructions;
     }
-
-    const shippingDataKeys: ShippingDataKey[] = [
-      "recipient_name",
-      "locker_code",
-      "address_line_1",
-      "address_line_2",
-      "city",
-      "state",
-      "postal_code",
-      "country",
-      "phone",
-    ];
 
     const publicApiUrl = import.meta.env.PUBLIC_API_URL;
     const accessEndpoint = publicApiUrl
@@ -374,19 +361,10 @@ const fieldClass =
     const content = document.getElementById("locker-content");
     const cardCustomerName = document.getElementById("card-customer-name");
     const cardLockerCode = document.getElementById("card-locker-code");
-    const warehouseIdNote = document.getElementById("warehouse-id-note");
-    const lockerCodeNote = document.getElementById("locker-code-note");
-    const copyCodeButton = document.getElementById("copy-code");
-    const copyCodeStatus = document.getElementById("copy-code-status");
-    const copyShippingButton = document.getElementById("copy-shipping");
-    const copyShippingStatus = document.getElementById("copy-shipping-status");
     const closeLockerButton = document.getElementById("close-locker");
 
     if (!(form instanceof HTMLFormElement)) return;
     if (!(submitButton instanceof HTMLButtonElement)) return;
-
-    let lockerCode = "";
-    let shippingData: ShippingData | null = null;
 
     if (
       new URLSearchParams(window.location.search).get("registro") === "exitoso"
@@ -444,20 +422,34 @@ const fieldClass =
 
     const isRecord = (value: unknown): value is Record<string, unknown> =>
       value !== null && typeof value === "object";
+    const isString = (value: unknown): value is string =>
+      typeof value === "string";
     const hasString = (value: unknown): value is string =>
-      typeof value === "string" && value.trim().length > 0;
+      isString(value) && value.trim().length > 0;
+
+    const isValidShippingData = (value: unknown): value is ShippingData => {
+      if (!isRecord(value)) return false;
+
+      return (
+        hasString(value.warehouse_reference) &&
+        hasString(value.address_line_1) &&
+        hasString(value.city) &&
+        hasString(value.state) &&
+        hasString(value.postal_code) &&
+        hasString(value.country)
+      );
+    };
 
     const isValidLockerResponse = (
       data: unknown,
     ): data is LockerAccessResponse => {
-      if (!isRecord(data) || !isRecord(data.shipping_data)) return false;
-      const shipping = data.shipping_data;
-      if (!hasString(data.customer_name) || !hasString(data.locker_code))
+      if (!isRecord(data)) return false;
+      if (!hasString(data.customer_name) || !hasString(data.locker_code)) {
         return false;
-      if (!hasString(shipping.recipient_name)) return false;
-      if (!hasString(shipping.locker_code)) return false;
+      }
+      if (!isValidShippingData(data.shipping_data)) return false;
 
-      return data.locker_code === shipping.locker_code;
+      return true;
     };
 
     const setText = (id: string, value: unknown) => {
@@ -467,14 +459,8 @@ const fieldClass =
       }
     };
 
-    const setOptionalRow = (key: ShippingDataKey, value: unknown) => {
-      const row = document.querySelector(`[data-shipping-row="${key}"]`);
-      row?.classList.toggle("hidden", !hasString(value));
-    };
-
     const renderLocker = (data: LockerAccessResponse) => {
-      lockerCode = data.locker_code;
-      shippingData = data.shipping_data;
+      const shippingData = data.shipping_data;
 
       if (cardCustomerName) {
         cardCustomerName.textContent = data.customer_name;
@@ -482,64 +468,16 @@ const fieldClass =
       if (cardLockerCode) {
         cardLockerCode.textContent = data.locker_code;
       }
-      if (warehouseIdNote) {
-        warehouseIdNote.textContent = hasString(shippingData.address_line_2)
-          ? `${shippingData.address_line_2} identifica a CaricoXpress dentro del almacén en Miami.`
-          : "El identificador del almacén debe colocarse cuando esté disponible en tus datos de envío.";
-      }
-      if (lockerCodeNote) {
-        lockerCodeNote.textContent = `Tu código ${data.locker_code} identifica tus compras y paquetes dentro de CaricoXpress.`;
-      }
 
-      shippingDataKeys.forEach((key: ShippingDataKey) => {
-        setText(`shipping-${key}`, shippingData[key]);
-      });
+      setText("shipping-warehouse_reference", shippingData.warehouse_reference);
+      setText("postal-address_line_1", shippingData.address_line_1);
+      setText("postal-city", shippingData.city);
+      setText("postal-state", shippingData.state);
+      setText("postal-postal_code", shippingData.postal_code);
+      setText("postal-country", shippingData.country);
 
-      setOptionalRow("address_line_2", shippingData.address_line_2);
-      setOptionalRow("phone", shippingData.phone);
       accessPanel?.classList.add("hidden");
       content?.classList.remove("hidden");
-    };
-
-    const getShippingCopyText = (): string => {
-      if (!shippingData) return "";
-
-      const lines: string[] = [
-        `${shippingData.recipient_name} - ${shippingData.locker_code}`,
-        shippingData.address_line_1,
-        shippingData.address_line_2,
-        `${shippingData.city}, ${shippingData.state} ${shippingData.postal_code}`.trim(),
-        shippingData.country,
-        shippingData.phone,
-      ];
-
-      return lines.filter((line: string) => hasString(line)).join("\n");
-    };
-
-    const setCopyStatus = (element: HTMLElement | null, message: string) => {
-      if (!element) return;
-      element.textContent = message;
-      window.setTimeout(() => {
-        element.textContent = "";
-      }, 3000);
-    };
-
-    const copyText = async (
-      text: string,
-      successMessageText: string,
-      statusElement: HTMLElement | null,
-    ): Promise<void> => {
-      if (!navigator.clipboard || !hasString(text)) {
-        setCopyStatus(statusElement, "No pudimos copiar en este momento.");
-        return;
-      }
-
-      try {
-        await navigator.clipboard.writeText(text);
-        setCopyStatus(statusElement, successMessageText);
-      } catch {
-        setCopyStatus(statusElement, "No pudimos copiar en este momento.");
-      }
     };
 
     form.addEventListener("submit", async (event: Event) => {
@@ -610,17 +548,6 @@ const fieldClass =
       }
     });
 
-    copyCodeButton?.addEventListener("click", () => {
-      copyText(lockerCode, "Código copiado", copyCodeStatus);
-    });
-
-    copyShippingButton?.addEventListener("click", () => {
-      copyText(
-        getShippingCopyText(),
-        "Datos de envío copiados",
-        copyShippingStatus,
-      );
-    });
     closeLockerButton?.addEventListener("click", () => {
       window.location.replace("/mi-casillero");
     });
