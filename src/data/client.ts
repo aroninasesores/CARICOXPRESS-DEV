@@ -26,7 +26,7 @@ export const client = {
     google: "https://maps.app.goo.gl/2SdbdGQMD87GRHyG6",
   },
   portal: {
-    label: "Clientes",
+    label: "Mi casillero",
     href: "/",
   },
   whatsapp: {
