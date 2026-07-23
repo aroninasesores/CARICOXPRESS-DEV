@@ -609,6 +609,31 @@ const venezuelanStates = [
     const rateLimitMessage =
       "Has realizado varios intentos en poco tiempo. Espera un momento antes de intentar nuevamente.";
 
+    type FormState = "idle" | "loading" | "error" | "success";
+
+    interface RegistrationPayload {
+      first_name: string;
+      last_name: string;
+      document_type: string;
+      document_number: string;
+      phone: string;
+      whatsapp: string;
+      email: string;
+      address: string;
+      city: string;
+      state: string;
+      password: string;
+      password_confirmation: string;
+      turnstile_token: string;
+    }
+
+    interface TurnstileApi {
+      reset?: () => void;
+    }
+
+    const isRecord = (value: unknown): value is Record<string, unknown> =>
+      value !== null && typeof value === "object";
+
     const form = document.getElementById("public-registration-form");
     if (!(form instanceof HTMLFormElement)) return;
     if (form.dataset.registrationInit === "true") return;
@@ -621,13 +646,13 @@ const venezuelanStates = [
     const idleLabel = form.querySelector("[data-label-idle]");
     const loadingLabel = form.querySelector("[data-label-loading]");
 
-    const setGeneralErrorMessage = (message) => {
+    const setGeneralErrorMessage = (message: string) => {
       if (generalError) {
         generalError.textContent = message;
       }
     };
 
-    const setFormState = (state) => {
+    const setFormState = (state: FormState) => {
       const isLoading = state === "loading";
       if (submitButton instanceof HTMLButtonElement) {
         submitButton.disabled = isLoading;
@@ -650,7 +675,7 @@ const venezuelanStates = [
       });
     };
 
-    const getField = (name) => {
+    const getField = (name: string) => {
       const field = form.elements.namedItem(name);
       return field instanceof HTMLInputElement ||
         field instanceof HTMLSelectElement ||
@@ -659,7 +684,7 @@ const venezuelanStates = [
         : null;
     };
 
-    const showFieldError = (name, message) => {
+    const showFieldError = (name: string, message: string) => {
       if (name === "turnstile_token") {
         setGeneralErrorMessage(message);
         return;
@@ -698,7 +723,7 @@ const venezuelanStates = [
       });
     };
 
-    const collectRegistrationPayload = () => {
+    const collectRegistrationPayload = (): RegistrationPayload => {
       const formData = new FormData(form);
       const turnstileToken = formData.get("turnstile_token");
 
@@ -722,13 +747,13 @@ const venezuelanStates = [
     };
 
     const resetTurnstile = () => {
-      const turnstile = window.turnstile;
+      const turnstile = (window as Window & { turnstile?: TurnstileApi }).turnstile;
       if (turnstile && typeof turnstile.reset === "function") {
         turnstile.reset();
       }
     };
 
-    const readJsonResponse = async (response) => {
+    const readJsonResponse = async (response: Response): Promise<unknown | null> => {
       try {
         return await response.json();
       } catch {
@@ -736,7 +761,7 @@ const venezuelanStates = [
       }
     };
 
-    const showValidationErrors = (errors) => {
+    const showValidationErrors = (errors: unknown): boolean => {
       if (!errors || typeof errors !== "object") return false;
 
       let hasFieldError = false;
@@ -752,7 +777,7 @@ const venezuelanStates = [
       return hasFieldError;
     };
 
-    const submitRegistration = async (payload) => {
+    const submitRegistration = async (payload: RegistrationPayload): Promise<boolean> => {
       if (!registrationEndpoint) {
         setGeneralErrorMessage(genericErrorMessage);
         setFormState("error");
@@ -776,10 +801,11 @@ const venezuelanStates = [
 
         if (response.status === 422) {
           const data = await readJsonResponse(response);
-          const hasFieldError = showValidationErrors(data?.errors);
-          const turnstileErrors = data?.errors?.turnstile_token;
+          const errors = isRecord(data) ? data.errors : null;
+          const hasFieldError = showValidationErrors(errors);
+          const turnstileErrors = isRecord(errors) ? errors.turnstile_token : null;
           const turnstileMessage = Array.isArray(turnstileErrors)
-            ? turnstileErrors.find((message) => typeof message === "string")
+            ? turnstileErrors.find((message): message is string => typeof message === "string")
             : "";
           if (turnstileMessage) {
             setGeneralErrorMessage(turnstileMessage);
