@@ -61,7 +61,8 @@ const fieldClass =
         </div>
 
         <form
-          id="locker-access-form"
+        id="locker-access-form"
+          method="post"
           class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2"
           novalidate
         >
@@ -357,7 +358,7 @@ const fieldClass =
   <Footer slot="footer" />
 </BaseLayout>
 <script>
-  (() => {
+  const initializeLockerPage = () => {
     interface ShippingData {
       warehouse_reference: string;
       address_line_1: string;
@@ -376,6 +377,12 @@ const fieldClass =
     const publicApiUrl = import.meta.env.PUBLIC_API_URL;
     const accessEndpoint = publicApiUrl
       ? `${publicApiUrl.replace(/\/$/, "")}/api/public/locker-access`
+      : "";
+    const sessionEndpoint = publicApiUrl
+      ? `${publicApiUrl.replace(/\/$/, "")}/api/public/locker-access/me`
+      : "";
+    const logoutEndpoint = publicApiUrl
+      ? `${publicApiUrl.replace(/\/$/, "")}/api/public/locker-access/logout`
       : "";
     const invalidCredentialsMessage =
       "El correo o la contraseña no son correctos.";
@@ -557,6 +564,7 @@ const fieldClass =
 
       accessPanel?.classList.add("hidden");
       content?.classList.remove("hidden");
+      localStorage.setItem("caricoxpress_locker", JSON.stringify(data));
     };
 
     form.addEventListener("submit", async (event: Event) => {
@@ -581,6 +589,7 @@ const fieldClass =
       if (!(passwordField instanceof HTMLInputElement)) return;
 
       setLoading(true);
+      localStorage.removeItem("caricoxpress_locker");
 
       try {
         const response = await fetch(accessEndpoint, {
@@ -589,6 +598,7 @@ const fieldClass =
             "Content-Type": "application/json",
             Accept: "application/json",
           },
+          credentials: "include",
           body: JSON.stringify({
             email: emailField.value,
             password: passwordField.value,
@@ -627,8 +637,52 @@ const fieldClass =
       }
     });
 
-    closeLockerButton?.addEventListener("click", () => {
+    const restoreSession = async () => {
+      const storedLocker = localStorage.getItem("caricoxpress_locker");
+      if (storedLocker) {
+        try {
+          const data = JSON.parse(storedLocker);
+          if (isValidLockerResponse(data)) {
+            renderLocker(data);
+            return;
+          }
+        } catch {
+          localStorage.removeItem("caricoxpress_locker");
+        }
+      }
+
+      if (!sessionEndpoint) return;
+
+      try {
+        const response = await fetch(sessionEndpoint, {
+          headers: { Accept: "application/json" },
+          credentials: "include",
+        });
+
+        if (!response.ok) return;
+
+        const data = await readJsonResponse(response);
+        if (isValidLockerResponse(data)) renderLocker(data);
+      } catch {
+        // The login form remains available when session restoration fails.
+      }
+    };
+
+    void restoreSession();
+
+    closeLockerButton?.addEventListener("click", async () => {
+      localStorage.removeItem("caricoxpress_locker");
+      if (logoutEndpoint) {
+        await fetch(logoutEndpoint, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          credentials: "include",
+        }).catch(() => undefined);
+      }
+
       window.location.replace("/mi-casillero");
     });
-  })();
+  };
+
+  document.addEventListener("astro:page-load", initializeLockerPage);
 </script>
