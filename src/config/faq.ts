@@ -19,6 +19,12 @@ export const faqs: FAQItem[] = [
   },
   {
     pregunta:
+      "¿Cuál es el precio por enviar celulares, tabletas y otros dispositivos electrónicos?",
+    respuesta:
+      "Las tarifas por enviar este tipo de dispositivos pueden variar según el tipo de equipo y su valor. Para conocer estos precios, por favor contáctanos directamente a través de whatsapp o nuestro correo de soporte y con gusto le informaremos.",
+  },
+  {
+    pregunta:
       "¿Cuál es la frecuencia de salida de los envíos aéreos y marítimos?",
     respuesta:
       "Para garantizar la rapidez y el flujo constante de tu mercancía, contamos con salidas aéreas semanales express. Por su parte, los envíos marítimos consolidados tienen salidas regulares programadas, ideales para cargas de mayor volumen o peso.",
