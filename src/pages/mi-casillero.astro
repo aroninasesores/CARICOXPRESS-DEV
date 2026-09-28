@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Banner from "../components/Banner.astro";
-import Logo from "../components/logo.astro";
 
 const fieldClass =
   "min-h-11 rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20";
@@ -61,7 +60,7 @@ const fieldClass =
         </div>
 
         <form
-        id="locker-access-form"
+          id="locker-access-form"
           method="post"
           class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2"
           novalidate
@@ -139,7 +138,12 @@ const fieldClass =
                   stroke-linejoin="round"
                 >
                   <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3"
+                  >
+                  </circle>
                 </svg>
                 <svg
                   data-password-hide-icon
@@ -155,8 +159,14 @@ const fieldClass =
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path d="M10.733 5.076A10.744 10.744 0 0 1 12 5c7 0 10 7 10 7a13.163 13.163 0 0 1-1.67 2.68"></path>
-                  <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                  <path
+                    d="M10.733 5.076A10.744 10.744 0 0 1 12 5c7 0 10 7 10 7a13.163 13.163 0 0 1-1.67 2.68"
+                  >
+                  </path>
+                  <path
+                    d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"
+                  >
+                  </path>
                   <path d="M2 2l20 20"></path>
                   <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
                 </svg>
@@ -205,23 +215,67 @@ const fieldClass =
           aria-labelledby="locker-card-title"
         >
           <header class="bg-primary px-6 py-6 text-primary-fg sm:px-8">
-            <div
-              class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
-            >
-              <div class="rounded-md bg-white px-3 py-2 shadow-sm">
-                <Logo />
+            <div class="flex items-center justify-between gap-5">
+              <div class="flex items-center gap-4">
+                <svg
+                  aria-hidden="true"
+                  class="h-10 w-10 shrink-0 text-primary-fg sm:h-12 sm:w-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                >
+                  <rect
+                    x="5"
+                    y="9"
+                    width="38"
+                    height="30"
+                    rx="5"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                  </rect>
+                  <circle
+                    cx="17"
+                    cy="21"
+                    r="5"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                  </circle>
+                  <path
+                    d="M9.5 34c.8-4.4 3.3-6.5 7.5-6.5s6.7 2.1 7.5 6.5M29 19h9M29 25h9M29 31h6"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  >
+                  </path>
+                </svg>
+                <div>
+                  <p
+                    id="locker-card-title"
+                    class="font-heading text-3xl font-bold uppercase tracking-wide sm:text-4xl"
+                  >
+                    Carnet de cliente
+                  </p>
+                </div>
               </div>
-              <div class="sm:text-right">
-                <p
-                  id="locker-card-title"
-                  class="font-heading text-2xl font-bold uppercase tracking-wide"
-                >
-                  Carnet de cliente
-                </p>
+              <div class="flex shrink-0 flex-col items-end gap-y-3 text-right">
+                <div>
+                  <p
+                    class="text-xs font-bold uppercase tracking-wider text-primary-fg/80"
+                  >
+                    N.º de casillero
+                  </p>
+                  <p
+                    id="card-locker-code-header"
+                    class="mt-1 font-heading text-2xl font-black leading-none text-primary-fg sm:text-3xl"
+                  >
+                  </p>
+                </div>
                 <span
-                  class="mt-3 inline-flex rounded-full border border-primary-fg/30 bg-green-600 shadow-sm shadow-green-400 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-fg"
+                  class="inline-flex rounded-full border border-primary-fg/30 bg-green-600 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-fg shadow-sm shadow-green-400"
                 >
-                  Casillero activo
+                  Activo
                 </span>
               </div>
             </div>
@@ -229,7 +283,7 @@ const fieldClass =
 
           <div class="bg-surface px-6 py-8 sm:px-8 lg:px-10">
             <section
-              class="grid grid-cols-1 gap-6 border-b border-border pb-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end"
+              class="grid grid-cols-1 gap-6 border-b border-border pb-8"
               aria-labelledby="locker-owner-title"
             >
               <div>
@@ -237,44 +291,57 @@ const fieldClass =
                   id="locker-owner-title"
                   class="text-xs font-bold uppercase tracking-wider text-accent"
                 >
-                  Nombre del cliente
-                </p>
-                <h2
-                  id="card-customer-name"
-                  class="mt-3 font-heading text-3xl font-bold text-text sm:text-4xl"
-                >
-                </h2>
-                <div class="mt-6 w-full md:max-w-2xl">
-                  <p
-                    class="mb-2 text-xs font-bold uppercase tracking-wider text-text-muted"
-                  >
-                    Código de cliente
-                  </p>
-                  <p
-                    id="shipping-warehouse_reference"
-                    class="mt-1 break-words rounded-md border-l-4 border-accent bg-background px-4 py-3 font-heading text-lg font-bold text-primary"
-                  >
-                  </p>
-                </div>
-              </div>
-              <div
-                class="rounded-lg border border-primary/15 bg-background p-5 shadow-sm"
-              >
-                <p
-                  class="text-xs font-bold uppercase tracking-wider text-text-muted"
-                >
-                  N.º de casillero
+                  Código de cliente
                 </p>
                 <p
-                  id="card-locker-code"
-                  class="mt-2 break-words font-heading text-5xl font-black leading-none text-primary sm:text-6xl"
+                  id="shipping-warehouse_reference"
+                  class="break-words rounded-md border-l-4 border-accent bg-background px-5 py-6 font-heading text-3xl font-bold text-primary shadow-sm sm:px-7 sm:py-7 sm:text-4xl"
                 >
                 </p>
+                <button
+                  id="copy-customer-code"
+                  type="button"
+                  class="mt-4 inline-flex min-h-11 items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-bold text-primary-fg transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  aria-describedby="copy-customer-code-status"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect
+                      x="8"
+                      y="8"
+                      width="13"
+                      height="13"
+                      rx="2"
+                    >
+                    </rect>
+                    <path
+                      d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"
+                    >
+                    </path>
+                  </svg>
+                  <span data-copy-label>Copiar código de cliente</span>
+                </button>
+                <span
+                  id="copy-customer-code-status"
+                  class="ml-3 text-sm text-text-muted"
+                  role="status"
+                  aria-live="polite"
+                >
+                </span>
               </div>
             </section>
 
             <section
-              class="grid grid-cols-1 gap-8 py-8 lg:grid-cols-[1fr_1.05fr]"
+              class="border-b border-border py-8"
               aria-labelledby="shipping-data-title"
             >
               <div>
@@ -292,31 +359,358 @@ const fieldClass =
               </div>
 
               <div
-                class="rounded-lg border border-border bg-background p-6 shadow-sm"
-                aria-labelledby="postal-block-title"
+                class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_0.8fr]"
               >
-                <p
-                  id="postal-block-title"
-                  class="text-xs font-bold uppercase tracking-wider text-accent"
-                >
-                  Dirección de su warehouse en CaricoXpress
-                </p>
                 <div
-                  class="mt-4 rounded-md bg-primary px-5 py-5 font-mono text-base leading-8 text-primary-fg shadow-inner sm:text-lg"
+                  class="rounded-lg border border-border bg-background p-6 shadow-sm"
+                  aria-labelledby="postal-block-title"
                 >
                   <p
-                    id="postal-address_line_1"
-                    class="break-words"
+                    id="postal-block-title"
+                    class="text-xs font-bold uppercase tracking-wider text-accent"
                   >
+                    Dirección de su warehouse en CaricoXpress
                   </p>
-                  <p>
-                    <span id="postal-city"></span><span id="postal-city-comma">
-                      ,
-                    </span><span id="postal-state"></span>
-                    <span id="postal-postal_code"></span>
-                  </p>
-                  <p id="postal-country"></p>
+                  <div
+                    class="mt-4 space-y-4 rounded-md bg-surface p-4 text-primary sm:p-5"
+                  >
+                    <div class="flex min-w-0 items-start gap-3">
+                      <svg
+                        aria-hidden="true"
+                        class="mt-0.5 h-5 w-5 shrink-0 text-accent"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle
+                          cx="12"
+                          cy="8"
+                          r="4"
+                        >
+                        </circle>
+                        <path d="M5 21a7 7 0 0 1 14 0"></path>
+                      </svg>
+                      <div class="min-w-0">
+                        <p
+                          id="postal-customer-reference"
+                          class="whitespace-nowrap text-[clamp(0.55rem,1.55vw,1rem)] font-bold leading-tight"
+                        >
+                        </p>
+                        <p class="mt-1 text-xs text-text-muted">
+                          (Debe aparecer exactamente así)
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-start gap-3 border-t border-border pt-3"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="mt-0.5 h-5 w-5 shrink-0 text-accent"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                        >
+                        </path>
+                        <circle
+                          cx="12"
+                          cy="10"
+                          r="2.5"
+                        >
+                        </circle>
+                      </svg>
+                      <div
+                        class="min-w-0 space-y-1 font-heading text-sm font-semibold leading-6 sm:text-base"
+                      >
+                        <p
+                          id="postal-address_line_1"
+                          class="break-words"
+                        >
+                        </p>
+                        <p>
+                          <span id="postal-city"></span><span
+                            id="postal-city-comma"
+                          >
+                            ,
+                          </span><span id="postal-state"></span>
+                          <span id="postal-postal_code"></span>
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-3 border-t border-border pt-3"
+                    >
+                      <svg
+                        aria-label="Bandera de Estados Unidos"
+                        role="img"
+                        class="h-5 w-7 shrink-0 rounded-sm shadow-sm"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 19 10"
+                      >
+                        <rect
+                          width="19"
+                          height="10"
+                          fill="#fff"
+                        >
+                        </rect>
+                        <path
+                          fill="#b22234"
+                          d="M0 0h19v.77H0zm0 1.54h19v.77H0zm0 1.54h19v.77H0zm0 1.54h19v.77H0zm0 1.54h19v.77H0zm0 1.54h19v.77H0z"
+                        >
+                        </path>
+                        <path
+                          fill="#3c3b6e"
+                          d="M0 0h8v5.38H0z"
+                        >
+                        </path>
+                        <path
+                          fill="#fff"
+                          d="m1 .6.2.45.5.04-.38.3.12.48L1 .61zm1.5 0 .2.45.5.04-.38.3.12.48-0.44-.26-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zM1 2l.2.45.5.04-.38.3.12.48L1 3.01l-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zM1 3.4l.2.45.5.04-.38.3.12.48L1 4.41l-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04zm1.5 0 .2.45.5.04-.38.3.12.48-.44-.26-.44.26.12-.48-.38-.3.5-.04z"
+                        >
+                        </path>
+                      </svg>
+                      <p
+                        id="postal-country"
+                        class="font-heading text-sm font-semibold sm:text-base"
+                      >
+                      </p>
+                    </div>
+                  </div>
                 </div>
+
+                <aside
+                  class="rounded-lg border border-yellow-300 bg-yellow-100 p-5 text-sm leading-relaxed text-yellow-950 shadow-sm sm:p-6"
+                  aria-labelledby="shipping-note-title"
+                >
+                  <div class="flex items-start gap-3">
+                    <span
+                      aria-hidden="true"
+                      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-400 text-xl font-black leading-none text-white"
+                    >
+                      !
+                    </span>
+                    <h3
+                      id="shipping-note-title"
+                      class="font-heading text-base font-bold leading-snug text-primary sm:text-lg"
+                    >
+                      Importante: coloque estos datos exactamente como aparecen
+                    </h3>
+                  </div>
+                  <p class="mt-4 leading-relaxed">
+                    Para identificar correctamente su paquete, use la
+                    información tal como se muestra en la dirección del
+                    warehouse.
+                  </p>
+                  <p
+                    class="mt-3 border-t border-yellow-300 pt-3 leading-relaxed"
+                  >
+                    Incluya también la referencia en las instrucciones de
+                    entrega para evitar confusiones con repartidores o
+                    transportistas.
+                  </p>
+                  <p class="mt-3 font-semibold leading-relaxed">
+                    Esto nos ayuda a recibir su compra de forma más rápida y
+                    precisa.
+                  </p>
+                </aside>
+              </div>
+            </section>
+
+            <section
+              class="pt-8"
+              aria-labelledby="shopping-examples-title"
+            >
+              <h2
+                id="shopping-examples-title"
+                class="font-heading text-2xl font-bold text-text"
+              >
+                Ejemplos de llenado en portales de compra
+              </h2>
+              <p class="mt-2 leading-relaxed text-text-muted">
+                Son ejemplos de referencia y pueden diferir de los formularios
+                reales de cada tienda. Los datos que aparecen en estos ejemplos
+                son ficticios y solo sirven como guía.
+              </p>
+              <div class="mt-6 grid grid-cols-1 gap-5 xl:grid-cols-2">
+                <article
+                  class="overflow-hidden rounded-lg border border-border bg-background shadow-sm"
+                  aria-labelledby="amazon-example-title"
+                >
+                  <header
+                    class="flex items-center justify-between border-b border-border px-5 py-4"
+                  >
+                    <h3
+                      id="amazon-example-title"
+                      class="flex items-center"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+                        alt="Amazon"
+                        class="h-7 w-auto"
+                        width="82"
+                        height="28"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </h3>
+                    <span
+                      class="text-xs font-semibold uppercase tracking-wide text-text-muted"
+                    >
+                      Editar dirección
+                    </span>
+                  </header>
+                  <div class="space-y-3 p-5">
+                    <div>
+                      <p class="text-xs font-semibold text-text-muted">
+                        Nombre completo
+                      </p>
+                      <div
+                        class="mt-1 rounded-md border border-border px-3 py-2 text-sm font-medium text-text"
+                      >
+                        Camila Torres CCXPRESS 3600- CX-2048
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                      <div class="col-span-2">
+                        <p class="text-xs font-semibold text-text-muted">
+                          Número de teléfono
+                        </p>
+                        <div
+                          class="mt-1 rounded-md border border-border px-3 py-2 text-sm text-text"
+                        >
+                          +1 (305) 555-0186
+                        </div>
+                        <p class="mt-1 text-xs text-text-muted">
+                          Se puede utilizar para ayudar a la entrega.
+                        </p>
+                      </div>
+                      <div class="col-span-2">
+                        <p class="text-xs font-semibold text-text-muted">
+                          Dirección de la calle
+                        </p>
+                        <div
+                          class="mt-1 rounded-md border border-border px-3 py-2 text-sm text-text"
+                        >
+                          8239 NW 68th St
+                        </div>
+                      </div>
+                      <div>
+                        <p class="text-xs font-semibold text-text-muted">
+                          Ciudad
+                        </p>
+                        <div
+                          class="mt-1 rounded-md border border-border px-3 py-2 text-sm text-text"
+                        >
+                          Miami
+                        </div>
+                      </div>
+                      <div class="grid grid-cols-2 gap-2">
+                        <div>
+                          <p class="text-xs font-semibold text-text-muted">
+                            Estado
+                          </p>
+                          <div
+                            class="mt-1 rounded-md border border-border px-3 py-2 text-sm text-text"
+                          >
+                            Florida
+                          </div>
+                        </div>
+                        <div>
+                          <p class="text-xs font-semibold text-text-muted">
+                            Código postal
+                          </p>
+                          <div
+                            class="mt-1 rounded-md border border-border px-3 py-2 text-sm text-text"
+                          >
+                            33166
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="rounded-md border border-yellow-300 bg-yellow-50 p-3"
+                    >
+                      <p class="text-xs font-bold text-primary">
+                        Instrucciones de entrega
+                      </p>
+                      <p class="mt-1 text-sm text-text">
+                        Dejar en la garita de vigilancia. No dejar en la puerta
+                        trasera.
+                      </p>
+                      <p class="mt-1 text-xs text-text-muted">
+                        Añádelas en “Actualiza instrucción entrega”, si aparece
+                        esta opción.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+
+                <article
+                  class="overflow-hidden rounded-lg border border-border bg-background shadow-sm"
+                  aria-labelledby="ebay-example-title"
+                >
+                  <header class="border-b border-border bg-surface px-5 py-4">
+                    <h3
+                      id="ebay-example-title"
+                      class="flex items-center"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg"
+                        alt="eBay"
+                        class="h-7 w-auto"
+                        width="76"
+                        height="30"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </h3>
+                    <p
+                      class="mt-1 text-xs font-semibold uppercase tracking-wide text-text-muted"
+                    >
+                      Enviar a · Confirmar dirección
+                    </p>
+                  </header>
+                  <div class="p-5">
+                    <div class="rounded-md border border-border p-4">
+                      <p class="text-sm font-bold text-text">
+                        Camila Torres CCXPRESS 3600-2048
+                      </p>
+                      <p class="mt-2 text-sm text-text">8239 NW 68th St</p>
+                      <p class="text-sm text-text">Miami, Florida 33166</p>
+                      <p class="text-sm text-text">Estados Unidos</p>
+                      <p class="mt-2 text-xs text-text-muted">
+                        +1 (305) 555-0186
+                      </p>
+                    </div>
+                    <div
+                      class="mt-4 rounded-md border-l-4 border-accent bg-surface p-4"
+                    >
+                      <p class="text-sm font-bold text-primary">
+                        Instrucciones para el transportista
+                      </p>
+                      <p class="mt-1 text-sm text-text">
+                        Dejar el paquete con el personal de recepción. No
+                        dejarlo sin supervisión.
+                      </p>
+                      <p class="mt-2 text-xs leading-relaxed text-text-muted">
+                        Si al finalizar la compra aparece un campo de
+                        instrucciones de entrega, puedes añadir este mensaje
+                        allí. No lo incluyas en ciudad ni estado.
+                      </p>
+                    </div>
+                  </div>
+                </article>
               </div>
             </section>
           </div>
@@ -402,9 +796,13 @@ const fieldClass =
     const idleLabel = form?.querySelector("[data-label-idle]");
     const loadingLabel = form?.querySelector("[data-label-loading]");
     const content = document.getElementById("locker-content");
-    const cardCustomerName = document.getElementById("card-customer-name");
-    const cardLockerCode = document.getElementById("card-locker-code");
+    const cardLockerCode = document.getElementById("card-locker-code-header");
     const closeLockerButton = document.getElementById("close-locker");
+    const copyCustomerCodeButton =
+      document.getElementById("copy-customer-code");
+    const copyCustomerCodeStatus = document.getElementById(
+      "copy-customer-code-status",
+    );
 
     if (!(form instanceof HTMLFormElement)) return;
     if (!(submitButton instanceof HTMLButtonElement)) return;
@@ -545,17 +943,36 @@ const fieldClass =
       }
     };
 
+    copyCustomerCodeButton?.addEventListener("click", async () => {
+      const customerCode = document
+        .getElementById("shipping-warehouse_reference")
+        ?.textContent?.trim();
+      if (!customerCode) return;
+
+      try {
+        await navigator.clipboard.writeText(customerCode);
+        if (copyCustomerCodeStatus) {
+          copyCustomerCodeStatus.textContent = "Código copiado";
+        }
+      } catch {
+        if (copyCustomerCodeStatus) {
+          copyCustomerCodeStatus.textContent =
+            "No se pudo copiar. Selecciona y copia el código.";
+        }
+      }
+    });
+
     const renderLocker = (data: LockerAccessResponse) => {
       const shippingData = data.shipping_data;
+      const customerReference =
+        `${data.customer_name} ${shippingData.warehouse_reference}`.trim();
 
-      if (cardCustomerName) {
-        cardCustomerName.textContent = data.customer_name;
-      }
       if (cardLockerCode) {
         cardLockerCode.textContent = data.locker_code;
       }
 
-      setText("shipping-warehouse_reference", shippingData.warehouse_reference);
+      setText("shipping-warehouse_reference", customerReference);
+      setText("postal-customer-reference", customerReference);
       setText("postal-address_line_1", shippingData.address_line_1);
       setText("postal-city", shippingData.city);
       setText("postal-state", shippingData.state);
@@ -654,7 +1071,7 @@ const fieldClass =
 
       try {
         const response = await fetch(sessionEndpoint, {
-          headers: { Accept: "application/json" },
+          headers: {Accept: "application/json"},
           credentials: "include",
         });
 
@@ -674,7 +1091,7 @@ const fieldClass =
       if (logoutEndpoint) {
         await fetch(logoutEndpoint, {
           method: "POST",
-          headers: { Accept: "application/json" },
+          headers: {Accept: "application/json"},
           credentials: "include",
         }).catch(() => undefined);
       }
