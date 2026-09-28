@@ -595,11 +595,10 @@ const fieldClass =
         const response = await fetch(accessEndpoint, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
             Accept: "application/json",
           },
           credentials: "include",
-          body: JSON.stringify({
+          body: new URLSearchParams({
             email: emailField.value,
             password: passwordField.value,
           }),
