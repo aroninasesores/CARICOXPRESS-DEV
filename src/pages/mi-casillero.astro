@@ -534,7 +534,8 @@ const fieldClass =
                   Registrar una prealerta
                 </h2>
                 <p class="mt-2 leading-relaxed text-text-muted">
-                  Avísanos sobre tu compra para identificarla al llegar al warehouse.
+                  Avísanos sobre tu compra para identificarla al llegar al
+                  warehouse.
                 </p>
               </div>
 
@@ -543,7 +544,8 @@ const fieldClass =
                 class="mt-5 hidden rounded-md border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
                 role="status"
                 aria-live="polite"
-              ></div>
+              >
+              </div>
               <div
                 id="prealert-error"
                 class="mt-5 hidden rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
@@ -566,8 +568,18 @@ const fieldClass =
                 novalidate
               >
                 <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                  <label for="prealert-tracking" class="flex flex-col gap-1.5 sm:col-span-2">
-                    <span class="text-sm font-medium text-text">Número de tracking <span class="text-accent" aria-hidden="true">*</span></span>
+                  <label
+                    for="prealert-tracking"
+                    class="flex flex-col gap-1.5 sm:col-span-2"
+                  >
+                    <span class="text-sm font-medium text-text">
+                      Número de tracking <span
+                        class="text-accent"
+                        aria-hidden="true"
+                      >
+                        *
+                      </span>
+                    </span>
                     <input
                       id="prealert-tracking"
                       name="external_tracking"
@@ -578,11 +590,26 @@ const fieldClass =
                       class={fieldClass}
                       aria-describedby="prealert-tracking-error"
                     />
-                    <span id="prealert-tracking-error" class="hidden text-sm text-red-600">Ingresa el número de tracking.</span>
+                    <span
+                      id="prealert-tracking-error"
+                      class="hidden text-sm text-red-600"
+                    >
+                      Ingresa el número de tracking.
+                    </span>
                   </label>
 
-                  <label for="prealert-description" class="flex flex-col gap-1.5 sm:col-span-2">
-                    <span class="text-sm font-medium text-text">Descripción del producto <span class="text-accent" aria-hidden="true">*</span></span>
+                  <label
+                    for="prealert-description"
+                    class="flex flex-col gap-1.5 sm:col-span-2"
+                  >
+                    <span class="text-sm font-medium text-text">
+                      Descripción del producto <span
+                        class="text-accent"
+                        aria-hidden="true"
+                      >
+                        *
+                      </span>
+                    </span>
                     <textarea
                       id="prealert-description"
                       name="content_description"
@@ -590,13 +617,35 @@ const fieldClass =
                       required
                       class={`${fieldClass} min-h-24 resize-y`}
                       aria-describedby="prealert-description-hint prealert-description-error"
-                    ></textarea>
-                    <span id="prealert-description-hint" class="text-sm leading-relaxed text-text-muted">Indica qué compraste y, si aplica, cantidad o modelo. Ej.: audífonos inalámbricos, 1 unidad.</span>
-                    <span id="prealert-description-error" class="hidden text-sm text-red-600">Describe el producto.</span>
+                    >
+                    </textarea>
+                    <span
+                      id="prealert-description-hint"
+                      class="text-sm leading-relaxed text-text-muted"
+                    >
+                      Indica qué compraste y, si aplica, cantidad o modelo. Ej.:
+                      audífonos inalámbricos, 1 unidad.
+                    </span>
+                    <span
+                      id="prealert-description-error"
+                      class="hidden text-sm text-red-600"
+                    >
+                      Describe el producto.
+                    </span>
                   </label>
 
-                  <label for="prealert-value" class="flex flex-col gap-1.5">
-                    <span class="text-sm font-medium text-text">Monto del producto (USD) <span class="text-accent" aria-hidden="true">*</span></span>
+                  <label
+                    for="prealert-value"
+                    class="flex flex-col gap-1.5"
+                  >
+                    <span class="text-sm font-medium text-text">
+                      Monto del producto (USD) <span
+                        class="text-accent"
+                        aria-hidden="true"
+                      >
+                        *
+                      </span>
+                    </span>
                     <input
                       id="prealert-value"
                       name="declared_value"
@@ -608,15 +657,34 @@ const fieldClass =
                       class={fieldClass}
                       aria-describedby="prealert-value-error"
                     />
-                    <span id="prealert-value-error" class="hidden text-sm text-red-600">Ingresa un monto válido mayor que cero.</span>
+                    <span
+                      id="prealert-value-error"
+                      class="hidden text-sm text-red-600"
+                    >
+                      Ingresa un monto válido mayor que cero.
+                    </span>
                   </label>
 
-                  <label for="prealert-shipping-type" class="flex flex-col gap-1.5">
-                    <span class="text-sm font-medium text-text">Tipo de envío</span>
-                    <select id="prealert-shipping-type" name="shipping_type" class={fieldClass}>
+                  <label
+                    for="prealert-shipping-type"
+                    class="flex flex-col gap-1.5"
+                  >
+                    <span class="text-sm font-medium text-text">
+                      Tipo de envío
+                    </span>
+                    <select
+                      id="prealert-shipping-type"
+                      name="shipping_type"
+                      class={fieldClass}
+                    >
                       <option value="air">Aéreo</option>
                       <option value="sea">Marítimo</option>
-                      <option value="undefined" selected>Por definir</option>
+                      <option
+                        value="undefined"
+                        selected
+                      >
+                        Por definir
+                      </option>
                     </select>
                   </label>
                 </div>
@@ -628,10 +696,95 @@ const fieldClass =
                     class="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
                   >
                     <span data-prealert-idle>Registrar prealerta</span>
-                    <span data-prealert-loading class="hidden">Guardando...</span>
+                    <span
+                      data-prealert-loading
+                      class="hidden"
+                    >
+                      Guardando...
+                    </span>
                   </button>
                 </div>
               </form>
+
+              <section
+                class="mt-12"
+                aria-labelledby="prealert-history-title"
+              >
+                <h3
+                  id="prealert-history-title"
+                  class="font-heading text-xl font-bold text-text"
+                >
+                  Historial de prealertas
+                </h3>
+                <p
+                  id="prealert-history-loading"
+                  class="mt-4 text-sm text-text-muted"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Cargando prealertas...
+                </p>
+                <p
+                  id="prealert-history-empty"
+                  class="mt-4 hidden rounded-md border border-border bg-background px-4 py-3 text-sm text-text-muted"
+                >
+                  Todavía no tienes prealertas registradas.
+                </p>
+                <p
+                  id="prealert-history-error"
+                  class="mt-4 hidden rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+                  role="alert"
+                >
+                </p>
+                <div
+                  id="prealert-history-table-wrap"
+                  class="mt-4 hidden overflow-x-auto rounded-lg border border-border bg-background shadow-sm"
+                >
+                  <table
+                    class="w-full min-w-[680px] border-collapse text-left text-sm"
+                  >
+                    <thead class="bg-primary text-primary-fg">
+                      <tr>
+                        <th
+                          scope="col"
+                          class="whitespace-nowrap px-4 py-3 font-semibold"
+                        >
+                          Fecha
+                        </th>
+                        <th
+                          scope="col"
+                          class="whitespace-nowrap px-4 py-3 font-semibold"
+                        >
+                          # Tracking
+                        </th>
+                        <th
+                          scope="col"
+                          class="min-w-48 px-4 py-3 font-semibold"
+                        >
+                          Descripción del producto
+                        </th>
+                        <th
+                          scope="col"
+                          class="whitespace-nowrap px-4 py-3 font-semibold"
+                        >
+                          Valor declarado
+                        </th>
+                        <th
+                          scope="col"
+                          class="whitespace-nowrap px-4 py-3 font-semibold"
+                        >
+                          Tipo de envío
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      id="prealert-history-rows"
+                      class="divide-y divide-border"
+                    >
+                    </tbody>
+                  </table>
+                </div>
+              </section>
             </section>
 
             <section
@@ -875,6 +1028,14 @@ const fieldClass =
       shipping_data: ShippingData;
     }
 
+    interface PreAlertHistoryItem {
+      date: string;
+      external_tracking: string;
+      content_description: string | null;
+      declared_value: string | number | null;
+      shipping_type: string;
+    }
+
     const publicApiUrl = import.meta.env.PUBLIC_API_URL;
     const accessEndpoint = publicApiUrl
       ? `${publicApiUrl.replace(/\/$/, "")}/api/public/locker-access`
@@ -923,6 +1084,21 @@ const fieldClass =
     );
     const preAlertLoadingLabel = preAlertForm?.querySelector(
       "[data-prealert-loading]",
+    );
+    const preAlertHistoryLoading = document.getElementById(
+      "prealert-history-loading",
+    );
+    const preAlertHistoryEmpty = document.getElementById(
+      "prealert-history-empty",
+    );
+    const preAlertHistoryError = document.getElementById(
+      "prealert-history-error",
+    );
+    const preAlertHistoryTableWrap = document.getElementById(
+      "prealert-history-table-wrap",
+    );
+    const preAlertHistoryRows = document.getElementById(
+      "prealert-history-rows",
     );
     const copyCustomerCodeButton =
       document.getElementById("copy-customer-code");
@@ -1084,14 +1260,117 @@ const fieldClass =
       preAlertLoadingLabel?.classList.toggle("hidden", !isLoading);
     };
 
+    const loadPreAlertHistory = async () => {
+      if (!(preAlertHistoryRows instanceof HTMLTableSectionElement)) return;
+
+      preAlertHistoryLoading?.classList.remove("hidden");
+      preAlertHistoryEmpty?.classList.add("hidden");
+      preAlertHistoryError?.classList.add("hidden");
+      preAlertHistoryTableWrap?.classList.add("hidden");
+      preAlertHistoryRows.replaceChildren();
+
+      try {
+        const response = await fetch(preAlertEndpoint, {
+          headers: {Accept: "application/json"},
+          credentials: "include",
+        });
+
+        if (response.status === 401) {
+          showPreAlertError(
+            "Tu sesión expiró. Vuelve a iniciar sesión para consultar tus prealertas.",
+            true,
+          );
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error("No se pudo cargar el historial de prealertas.");
+        }
+
+        const data = await readJsonResponse(response);
+        if (!isRecord(data) || !Array.isArray(data.prealerts)) {
+          throw new Error("No se pudo cargar el historial de prealertas.");
+        }
+
+        const isPreAlertHistoryItem = (
+          item: unknown,
+        ): item is PreAlertHistoryItem =>
+          isRecord(item) &&
+          hasString(item.date) &&
+          hasString(item.external_tracking) &&
+          (item.content_description === null ||
+            isString(item.content_description)) &&
+          (item.declared_value === null ||
+            isString(item.declared_value) ||
+            typeof item.declared_value === "number") &&
+          hasString(item.shipping_type);
+
+        if (!data.prealerts.every(isPreAlertHistoryItem)) {
+          throw new Error("No se pudo cargar el historial de prealertas.");
+        }
+        const items = data.prealerts as PreAlertHistoryItem[];
+
+        if (items.length === 0) {
+          preAlertHistoryEmpty?.classList.remove("hidden");
+          return;
+        }
+
+        const shippingTypeLabels: Record<string, string> = {
+          air: "Aéreo",
+          sea: "Marítimo",
+          undefined: "Por definir",
+        };
+        const dateFormatter = new Intl.DateTimeFormat("es-VE", {
+          dateStyle: "medium",
+        });
+        const currencyFormatter = new Intl.NumberFormat("es-VE", {
+          style: "currency",
+          currency: "USD",
+        });
+
+        items.forEach((item) => {
+          const row = document.createElement("tr");
+          row.className = "align-top even:bg-surface/50";
+          const date = new Date(item.date);
+          const declaredValue = Number(item.declared_value);
+          const cells = [
+            Number.isNaN(date.getTime()) ? "—" : dateFormatter.format(date),
+            item.external_tracking,
+            item.content_description || "—",
+            item.declared_value !== null && Number.isFinite(declaredValue)
+              ? currencyFormatter.format(declaredValue)
+              : "—",
+            shippingTypeLabels[item.shipping_type] ?? item.shipping_type,
+          ];
+
+          cells.forEach((value) => {
+            const cell = document.createElement("td");
+            cell.className = "px-4 py-3 text-text";
+            cell.textContent = value;
+            row.append(cell);
+          });
+
+          preAlertHistoryRows.append(row);
+        });
+
+        preAlertHistoryTableWrap?.classList.remove("hidden");
+      } catch {
+        if (preAlertHistoryError) {
+          preAlertHistoryError.textContent =
+            "No se pudo cargar el historial. Intenta nuevamente más tarde.";
+          preAlertHistoryError.classList.remove("hidden");
+        }
+      } finally {
+        preAlertHistoryLoading?.classList.add("hidden");
+      }
+    };
+
     if (
       preAlertForm instanceof HTMLFormElement &&
       preAlertSubmitButton instanceof HTMLButtonElement
     ) {
       const trackingField = document.getElementById("prealert-tracking");
-      const descriptionField = document.getElementById(
-        "prealert-description",
-      );
+      const descriptionField = document.getElementById("prealert-description");
       const valueField = document.getElementById("prealert-value");
       const shippingTypeField = document.getElementById(
         "prealert-shipping-type",
@@ -1163,7 +1442,11 @@ const fieldClass =
           descriptionField.removeAttribute("aria-invalid");
         }
 
-        if (!valueField.value || !Number.isFinite(declaredValue) || declaredValue <= 0) {
+        if (
+          !valueField.value ||
+          !Number.isFinite(declaredValue) ||
+          declaredValue <= 0
+        ) {
           valueError?.classList.remove("hidden");
           valueField.setAttribute("aria-invalid", "true");
           if (isValid) valueField.focus();
@@ -1225,8 +1508,9 @@ const fieldClass =
                 : "";
             const message =
               [apiMessage, validationMessage]
-                .filter((part, index, messages) =>
-                  Boolean(part) && messages.indexOf(part) === index,
+                .filter(
+                  (part, index, messages) =>
+                    Boolean(part) && messages.indexOf(part) === index,
                 )
                 .join(" ") ||
               "No se pudo registrar la prealerta. Intenta nuevamente.";
@@ -1243,6 +1527,7 @@ const fieldClass =
               apiMessage || "Prealerta registrada correctamente.";
             preAlertSuccess.classList.remove("hidden");
           }
+          await loadPreAlertHistory();
         } catch {
           showPreAlertError(
             "No se pudo conectar con el servidor. Revisa tu conexión e intenta nuevamente.",
@@ -1257,8 +1542,8 @@ const fieldClass =
       localStorage.removeItem("caricoxpress_locker");
       accessPanel?.classList.remove("hidden");
       content?.classList.add("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      document.getElementById("access-email")?.focus({ preventScroll: true });
+      window.scrollTo({top: 0, behavior: "smooth"});
+      document.getElementById("access-email")?.focus({preventScroll: true});
     });
 
     copyCustomerCodeButton?.addEventListener("click", async () => {
@@ -1300,6 +1585,7 @@ const fieldClass =
       accessPanel?.classList.add("hidden");
       content?.classList.remove("hidden");
       localStorage.setItem("caricoxpress_locker", JSON.stringify(data));
+      void loadPreAlertHistory();
     };
 
     form.addEventListener("submit", async (event: Event) => {
@@ -1373,19 +1659,11 @@ const fieldClass =
 
     const restoreSession = async () => {
       const storedLocker = localStorage.getItem("caricoxpress_locker");
-      if (storedLocker) {
-        try {
-          const data = JSON.parse(storedLocker);
-          if (isValidLockerResponse(data)) {
-            renderLocker(data);
-            return;
-          }
-        } catch {
-          localStorage.removeItem("caricoxpress_locker");
-        }
+      const hadStoredLocker = storedLocker !== null;
+      if (!sessionEndpoint) {
+        localStorage.removeItem("caricoxpress_locker");
+        return;
       }
-
-      if (!sessionEndpoint) return;
 
       try {
         const response = await fetch(sessionEndpoint, {
@@ -1393,12 +1671,32 @@ const fieldClass =
           credentials: "include",
         });
 
-        if (!response.ok) return;
+        if (response.status === 401) {
+          localStorage.removeItem("caricoxpress_locker");
+          if (hadStoredLocker) {
+            setError(
+              "Tu sesión expiró. Inicia sesión nuevamente para consultar tu casillero.",
+            );
+          }
+          return;
+        }
+
+        if (!response.ok) {
+          localStorage.removeItem("caricoxpress_locker");
+          if (hadStoredLocker) setError(genericErrorMessage);
+          return;
+        }
 
         const data = await readJsonResponse(response);
-        if (isValidLockerResponse(data)) renderLocker(data);
+        if (isValidLockerResponse(data)) {
+          renderLocker(data);
+        } else {
+          localStorage.removeItem("caricoxpress_locker");
+          if (hadStoredLocker) setError(genericErrorMessage);
+        }
       } catch {
-        // The login form remains available when session restoration fails.
+        localStorage.removeItem("caricoxpress_locker");
+        if (hadStoredLocker) setError(genericErrorMessage);
       }
     };
 
