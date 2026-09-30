@@ -1,4 +1,5 @@
 // src/data/faqs.ts
+import {client} from "../data/client";
 
 export interface FAQItem {
   pregunta: string;
@@ -45,8 +46,7 @@ export const faqs: FAQItem[] = [
   {
     pregunta:
       "¿Cómo envío mis compras al almacén de Miami y cómo funciona el reempaque?",
-    respuesta:
-      "Debes enviar tus compras a la dirección: 8239 NW 68 ST, Miami, FL 33166, de lunes a viernes de 8:30 am a 12:00 m y de 1:00 pm a 5:00 pm. Nuestro personal optimiza el volumen de tus cajas bajando el espacio vacío gratis. Si solicitas un reempaque formal para consolidar varias compras en una sola, este tiene un costo de $10 (1 a 5 cajas) o $20 (de 5 en adelante).",
+    respuesta: `Debes enviar tus compras a la dirección: ${client.address.lineOne}, ${client.address.city}, ${client.address.state} ${client.address.zip}, de lunes a viernes de 8:30 am a 12:00 m y de 1:00 pm a 5:00 pm. Nuestro personal optimiza el volumen de tus cajas bajando el espacio vacío gratis. Si solicitas un reempaque formal para consolidar varias compras en una sola, este tiene un costo de $10 (1 a 5 cajas) o $20 (de 5 en adelante).`,
     href: "/blog/reempaque-consolidacion",
   },
 ];

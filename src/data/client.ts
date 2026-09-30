@@ -8,13 +8,14 @@ export const client = {
   phoneFormatted: "(+58) 414 1018217",
   license: "",
   address: {
-    lineOne: "8239 NW",
-    lineTwo: "68th St",
+    lineOne: "8241 NW 66th St",
+    lineTwo: "",
     city: "Miami",
     state: "FL",
     zip: "33166",
     country: "US",
-    mapLink: "https://maps.app.goo.gl/2SdbdGQMD87GRHyG6",
+    mapLink:
+      "https://www.google.com/maps/search/?api=1&query=8241+NW+66th+St%2C+Miami%2C+FL+33166",
   },
   hours: [
     "Lunes - Viernes: 8:00 AM - 6:00 PM",
@@ -23,7 +24,8 @@ export const client = {
   ],
   socials: {
     instagram: "https://www.instagram.com/caricoxpress/",
-    google: "https://maps.app.goo.gl/2SdbdGQMD87GRHyG6",
+    google:
+      "https://www.google.com/maps/search/?api=1&query=8241+NW+66th+St%2C+Miami%2C+FL+33166",
   },
   portal: {
     label: "Mi casillero",
