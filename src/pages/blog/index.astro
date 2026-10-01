@@ -14,6 +14,8 @@ import guiaEmbalaje from "../../assets/images/gallery/Nuestro personal siempre d
 import comprasSeguras from "../../assets/images/gallery/Maquinaria lista para mover su carga.png";
 import aereoMaritimo from "../../assets/images/gallery/Conexión marítima directa con Venezuela.png";
 import casilleroMiami from "../../assets/images/gallery/Despachos aéreos express todas las semanas.png";
+import prealertaTracking from "../../assets/images/gallery/prealerta-tracking-cover.png";
+import registroCasillero from "../../assets/images/gallery/registro-casillero-cover.png";
 
 const posts = (await getCollection("blog", ({data}) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
@@ -41,8 +43,12 @@ const postImages = {
     alt: "Conexión de carga marítima y logística internacional entre Miami y Venezuela",
   },
   "como-abrir-y-usar-tu-casillero-internacional-en-miami": {
-    src: casilleroMiami,
-    alt: "Despachos aéreos express organizados para clientes con casillero internacional en Miami",
+    src: registroCasillero,
+    alt: "Cliente completando el registro de su casillero internacional",
+  },
+  "como-hacer-una-prealerta-en-mi-casillero": {
+    src: prealertaTracking,
+    alt: "Paquete con etiqueta de código de barras y seguimiento de envío",
   },
 } as const;
 ---
