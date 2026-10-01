@@ -10,6 +10,7 @@ import {Font} from "astro:assets";
 import {ClientRouter} from "astro:transitions";
 import "../styles/global.css";
 import {brand} from "../config/brand";
+import WarehouseMoveDialog from "../components/WarehouseMoveDialog.astro";
 
 interface Props {
   title?: string;
@@ -181,5 +182,7 @@ const imageURL = new URL(image, Astro.site ?? brand.url);
     </main>
 
     <slot name="footer" />
+
+    <WarehouseMoveDialog />
   </body>
 </html>
