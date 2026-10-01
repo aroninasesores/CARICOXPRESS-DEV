@@ -62,7 +62,10 @@ const { bgClass = "" } = Astro.props;
 
               {/* 📊 Render condicional de la tabla de tarifas */}
               {item.hasTable && (
-                <div class="mt-4 overflow-x-auto rounded-lg border border-neutral-200 shadow-sm">
+                <div
+                  class="mt-4 overflow-x-auto rounded-lg border border-neutral-200 shadow-sm"
+                  data-public-rates
+                >
                   <table class="min-w-full text-sm text-left text-neutral-600">
                     <thead class="bg-neutral-50 text-neutral-900 font-bold border-b border-neutral-200">
                       <tr>
@@ -72,24 +75,24 @@ const { bgClass = "" } = Astro.props;
                       </tr>
                     </thead>
                     <tbody class="divide-y divide-neutral-200 bg-white">
-                      <tr class="hover:bg-neutral-50 transition-colors">
+                      <tr class="hover:bg-neutral-50 transition-colors" data-rate-row="air">
                         <td class="px-4 py-2.5 font-medium text-neutral-900">
                           Aérea (Por Libra)
                         </td>
-                        <td class="px-4 py-2.5 text-center">$6</td>
-                        <td class="px-4 py-2.5 text-center">$9</td>
+                        <td class="px-4 py-2.5 text-center" data-rate-caracas>$6</td>
+                        <td class="px-4 py-2.5 text-center" data-rate-rest-of-country>$9</td>
                       </tr>
-                      <tr class="hover:bg-neutral-50 transition-colors">
+                      <tr class="hover:bg-neutral-50 transition-colors" data-rate-row="sea">
                         <td class="px-4 py-2.5 font-medium text-neutral-900">
                           Marítima (Por Pie Cúbico)
                         </td>
-                        <td class="px-4 py-2.5 text-center">$35</td>
-                        <td class="px-4 py-2.5 text-center">$38</td>
+                        <td class="px-4 py-2.5 text-center" data-rate-caracas>$35</td>
+                        <td class="px-4 py-2.5 text-center" data-rate-rest-of-country>$38</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                  <p class="text-sm text-neutral-500 italic mt-2">
+                  <p class="text-sm text-neutral-500 italic mt-2" data-rates-minimum>
                     El mínimo de carga para envíos aéreos es de $35 y para
                     envíos marítimos es de $50.
                   </p>
@@ -119,3 +122,68 @@ const { bgClass = "" } = Astro.props;
   </div>
   </div>
 </section>
+
+<script>
+  (() => {
+    const publicApiUrl = import.meta.env.PUBLIC_API_URL;
+    const ratesEndpoint = publicApiUrl
+      ? `${publicApiUrl.replace(/\/$/, "")}/api/public/rates`
+      : "";
+    const ratesTable = document.querySelector<HTMLElement>("[data-public-rates]");
+
+    if (!ratesEndpoint || !ratesTable) return;
+
+    interface PublicRate {
+      shipping_type: "air" | "sea";
+      caracas: string | null;
+      rest_of_country: string | null;
+      minimum_billable: string | null;
+    }
+
+    interface PublicRatesResponse {
+      data: PublicRate[];
+    }
+
+    const formatPrice = (value: string | null): string =>
+      value === null ? "Consultar" : `$${value.replace(/\.00$/, "")}`;
+
+    const updateTable = (rates: PublicRate[]) => {
+      rates.forEach((rate) => {
+        const row = ratesTable.querySelector<HTMLElement>(
+          `[data-rate-row="${rate.shipping_type}"]`,
+        );
+
+        if (!row) return;
+
+        const caracas = row.querySelector<HTMLElement>("[data-rate-caracas]");
+        const restOfCountry = row.querySelector<HTMLElement>(
+          "[data-rate-rest-of-country]",
+        );
+
+        if (caracas) caracas.textContent = formatPrice(rate.caracas);
+        if (restOfCountry) {
+          restOfCountry.textContent = formatPrice(rate.rest_of_country);
+        }
+      });
+
+      const minimum = ratesTable.parentElement?.querySelector<HTMLElement>(
+        "[data-rates-minimum]",
+      );
+      const air = rates.find((rate) => rate.shipping_type === "air");
+      const sea = rates.find((rate) => rate.shipping_type === "sea");
+
+      if (minimum && (air?.minimum_billable || sea?.minimum_billable)) {
+        minimum.textContent = `El mínimo de carga para envíos aéreos es de ${formatPrice(air?.minimum_billable ?? null)} y para envíos marítimos es de ${formatPrice(sea?.minimum_billable ?? null)}.`;
+      }
+    };
+
+    fetch(ratesEndpoint, {headers: {Accept: "application/json"}})
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload: PublicRatesResponse | null) => {
+        if (payload?.data?.length) updateTable(payload.data);
+      })
+      .catch(() => {
+        // The embedded values remain visible if the public API is unavailable.
+      });
+  })();
+</script>
