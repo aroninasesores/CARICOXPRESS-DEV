@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="840" viewBox="0 0 900 840" role="img" aria-labelledby="title desc">
+  <title id="title">Ejemplo de dirección de envío en eBay</title>
+  <desc id="desc">Confirmación de envío en eBay. El nombre ficticio Elena Vargas aparece en el mismo renglón que CCXPRESS 3600 - 5726; la dirección corresponde al warehouse CaricoXpress.</desc>
+  <rect width="900" height="840" rx="24" fill="#f4f5f7"/>
+  <rect x="24" y="24" width="852" height="792" rx="18" fill="#fff" stroke="#d9dee7" stroke-width="2"/>
+  <rect x="24" y="24" width="852" height="124" rx="18" fill="#f8f8f8"/>
+  <path d="M24 148h852" stroke="#e1e5ec" stroke-width="2"/>
+  <text x="62" y="89" font-family="Arial,sans-serif" font-size="52" font-weight="700">
+    <tspan fill="#e53238">e</tspan><tspan fill="#0064d2">b</tspan><tspan fill="#f5af02">a</tspan><tspan fill="#86b817">y</tspan>
+  </text>
+  <text x="62" y="124" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="1" fill="#475569">ENVIAR A · CONFIRMAR DIRECCIÓN</text>
+
+  <text x="64" y="203" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#475569">DIRECCIÓN DE ENVÍO</text>
+  <rect x="64" y="225" width="772" height="346" rx="16" fill="#fff" stroke="#d6deea" stroke-width="2"/>
+  <circle cx="101" cy="271" r="18" fill="#e9f1fc"/>
+  <path d="M101 260v22m-11-11h22" stroke="#3665a8" stroke-width="3" stroke-linecap="round"/>
+  <text x="96" y="279" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#18283e">Elena Vargas CCXPRESS 3600 - 5726</text>
+  <text x="96" y="311" font-family="Arial,sans-serif" font-size="16" fill="#64748b">Debe aparecer exactamente así.</text>
+  <text x="96" y="361" font-family="Arial,sans-serif" font-size="23" fill="#18283e">8241 NW 66th St</text>
+  <text x="96" y="402" font-family="Arial,sans-serif" font-size="23" fill="#18283e">Miami, Florida 33166</text>
+  <text x="96" y="443" font-family="Arial,sans-serif" font-size="23" fill="#18283e">Estados Unidos</text>
+  <text x="96" y="529" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#3665a8">Cambiar dirección</text>
+
+  <rect x="64" y="596" width="772" height="158" rx="14" fill="#f5f6f8"/>
+  <rect x="64" y="596" width="7" height="158" rx="3" fill="#e85d20"/>
+  <text x="94" y="637" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#0d2b55">Instrucciones para el transportista</text>
+  <text x="94" y="675" font-family="Arial,sans-serif" font-size="20" fill="#18283e">Dejar en la garita de vigilancia. No dejar en la puerta trasera.</text>
+  <text x="94" y="713" font-family="Arial,sans-serif" font-size="17" fill="#64748b">Usa este campo solo si aparece en el proceso de compra.</text>
+  <text x="94" y="738" font-family="Arial,sans-serif" font-size="17" fill="#64748b">No incluyas estas notas en calle, ciudad ni estado.</text>
+</svg>

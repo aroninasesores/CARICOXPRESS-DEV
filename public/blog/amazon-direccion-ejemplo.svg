@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="940" viewBox="0 0 900 940" role="img" aria-labelledby="title desc">
+  <title id="title">Ejemplo de dirección de envío en Amazon</title>
+  <desc id="desc">El nombre ficticio Elena Vargas va seguido, en el mismo campo, por CCXPRESS 3600 - 5726. La dirección restante es la original del warehouse CaricoXpress.</desc>
+  <rect width="900" height="1060" rx="24" fill="#f4f5f7"/>
+  <rect x="24" y="24" width="852" height="892" rx="18" fill="#fff" stroke="#d9dee7" stroke-width="2"/>
+  <rect x="24" y="24" width="852" height="104" rx="18" fill="#fff"/>
+  <path d="M24 110h852" stroke="#e1e5ec" stroke-width="2"/>
+  <text x="62" y="82" font-family="Arial,sans-serif" font-size="48" font-weight="700" fill="#202124">amazon</text>
+  <path d="M83 91c44 33 93 33 137 0" fill="none" stroke="#f59d19" stroke-width="7" stroke-linecap="round"/>
+  <text x="840" y="77" text-anchor="end" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#34445a">EDITAR DIRECCIÓN</text>
+
+  <g font-family="Arial,sans-serif" fill="#364152">
+    <text x="64" y="157" font-size="22" font-weight="700">Nombre completo</text>
+    <rect x="64" y="172" width="772" height="65" rx="12" fill="#fff" stroke="#d6deea" stroke-width="2"/>
+    <text x="88" y="213" font-size="23" fill="#18283e">Elena Vargas CCXPRESS 3600 - 5726</text>
+    <text x="64" y="267" font-size="17" fill="#64748b">Debe aparecer exactamente así, con el nombre y el código juntos.</text>
+
+    <text x="64" y="325" font-size="22" font-weight="700">Dirección de la calle</text>
+    <rect x="64" y="340" width="772" height="65" rx="12" fill="#fff" stroke="#d6deea" stroke-width="2"/>
+    <text x="88" y="381" font-size="24" fill="#18283e">8241 NW 66th St</text>
+
+    <text x="64" y="450" font-size="22" font-weight="700">Ciudad</text>
+    <text x="485" y="450" font-size="22" font-weight="700">Estado</text>
+    <text x="690" y="450" font-size="22" font-weight="700">Código postal</text>
+    <rect x="64" y="465" width="390" height="65" rx="12" fill="#fff" stroke="#d6deea" stroke-width="2"/>
+    <rect x="474" y="465" width="190" height="65" rx="12" fill="#fff" stroke="#d6deea" stroke-width="2"/>
+    <rect x="684" y="465" width="152" height="65" rx="12" fill="#fff" stroke="#d6deea" stroke-width="2"/>
+    <text x="88" y="506" font-size="24" fill="#18283e">Miami</text>
+    <text x="497" y="506" font-size="24" fill="#18283e">Florida</text>
+    <text x="706" y="506" font-size="24" fill="#18283e">33166</text>
+
+    <text x="64" y="575" font-size="22" font-weight="700">País o región</text>
+    <rect x="64" y="590" width="772" height="65" rx="12" fill="#fff" stroke="#d6deea" stroke-width="2"/>
+    <text x="88" y="631" font-size="24" fill="#18283e">Estados Unidos</text>
+  </g>
+
+  <rect x="64" y="688" width="772" height="166" rx="16" fill="#fffce9" stroke="#efcf33" stroke-width="2"/>
+  <text x="92" y="729" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#0d2b55">Instrucciones de entrega</text>
+  <text x="92" y="769" font-family="Arial,sans-serif" font-size="22" fill="#18283e">Dejar en la garita de vigilancia.</text>
+  <text x="92" y="801" font-family="Arial,sans-serif" font-size="22" fill="#18283e">No dejar en la puerta trasera.</text>
+  <text x="92" y="836" font-family="Arial,sans-serif" font-size="16" fill="#64748b">Añádelas solo si aparece el campo de instrucciones.</text>
+
+  <rect x="64" y="876" width="772" height="48" rx="12" fill="#ffd21f"/>
+  <text x="450" y="907" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#17253a">USAR ESTA DIRECCIÓN</text>
+</svg>
