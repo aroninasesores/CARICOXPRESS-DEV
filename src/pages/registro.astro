@@ -271,6 +271,36 @@ const venezuelanStates = [
             </label>
 
             <label
+              for="email"
+              class="flex flex-col gap-1.5"
+            >
+              <span class="text-sm font-medium text-text">
+                Correo electrónico <span
+                  class="text-accent"
+                  aria-hidden="true"
+                >
+                  *
+                </span>
+              </span>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                inputmode="email"
+                required
+                class={fieldClass}
+                aria-describedby="email-error"
+              />
+              <span
+                id="email-error"
+                class={errorClass}
+              >
+                Indica un correo electrónico válido.
+              </span>
+            </label>
+
+            <label
               for="phone"
               class="flex flex-col gap-1.5"
             >
@@ -297,66 +327,6 @@ const venezuelanStates = [
                 class={errorClass}
               >
                 Indica un teléfono de contacto.
-              </span>
-            </label>
-
-            <label
-              for="whatsapp"
-              class="flex flex-col gap-1.5"
-            >
-              <span class="text-sm font-medium text-text">
-                WhatsApp <span
-                  class="text-accent"
-                  aria-hidden="true"
-                >
-                  *
-                </span>
-              </span>
-              <input
-                id="whatsapp"
-                name="whatsapp"
-                type="tel"
-                autocomplete="tel"
-                inputmode="tel"
-                required
-                class={fieldClass}
-                aria-describedby="whatsapp-error"
-              />
-              <span
-                id="whatsapp-error"
-                class={errorClass}
-              >
-                Indica tu numero de WhatsApp.
-              </span>
-            </label>
-
-            <label
-              for="email"
-              class="flex flex-col gap-1.5 sm:col-span-2"
-            >
-              <span class="text-sm font-medium text-text">
-                Correo electrónico <span
-                  class="text-accent"
-                  aria-hidden="true"
-                >
-                  *
-                </span>
-              </span>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                inputmode="email"
-                required
-                class={fieldClass}
-                aria-describedby="email-error"
-              />
-              <span
-                id="email-error"
-                class={errorClass}
-              >
-                Indica un correo electrónico válido.
               </span>
             </label>
 
@@ -709,7 +679,6 @@ const venezuelanStates = [
       document_type: string;
       document_number: string;
       phone: string;
-      whatsapp: string;
       email: string;
       address: string;
       city: string;
@@ -868,7 +837,6 @@ const venezuelanStates = [
         document_type: getField("document_type")?.value ?? "",
         document_number: getField("document_number")?.value ?? "",
         phone: getField("phone")?.value ?? "",
-        whatsapp: getField("whatsapp")?.value ?? "",
         email: getField("email")?.value ?? "",
         address: getField("address")?.value ?? "",
         city: getField("city")?.value ?? "",
