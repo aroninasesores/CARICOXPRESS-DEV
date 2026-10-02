@@ -1,0 +1,365 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Banner from "../components/Banner.astro";
+
+const fieldClass =
+  "min-h-11 rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20";
+---
+
+<BaseLayout
+  title="Recuperar contraseña"
+  description="Recupera el acceso a tu casillero CaricoXpress de forma segura."
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <Header slot="header" />
+  <Banner title="Recuperar contraseña" />
+
+  <section class="bg-background py-section">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <div class="rounded-lg border border-border bg-background p-6 shadow-sm sm:p-8">
+        <div class="text-center">
+          <p class="text-sm font-bold uppercase text-accent">Mi CaricoXpress</p>
+          <h1 class="mt-3 font-heading text-h2 font-bold uppercase text-text">
+            Recupera tu acceso
+          </h1>
+          <p class="mx-auto mt-4 max-w-2xl leading-relaxed text-text-muted">
+            Solicita un enlace para crear una nueva contraseña y volver a entrar
+            a tu casillero.
+          </p>
+        </div>
+
+        <div
+          id="reset-status"
+          class="mx-auto mt-6 hidden rounded-md border px-4 py-3 text-sm"
+          role="status"
+          aria-live="polite"
+          tabindex="-1"
+        ></div>
+
+        <form
+          id="request-form"
+          class="mt-8 space-y-5"
+          novalidate
+        >
+          <label
+            for="request-email"
+            class="flex flex-col gap-1.5"
+          >
+            <span class="text-sm font-medium text-text">
+              Correo electrónico <span class="text-accent" aria-hidden="true">*</span>
+            </span>
+            <input
+              id="request-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class={fieldClass}
+              aria-describedby="request-email-error"
+            />
+            <span
+              id="request-email-error"
+              class="hidden text-sm text-red-600"
+            >
+              Indica un correo electrónico válido.
+            </span>
+          </label>
+
+          <button
+            id="request-submit"
+            type="submit"
+            class="inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-md bg-accent px-8 py-3 text-base font-bold uppercase text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+          >
+            <span data-label-idle>Enviar enlace</span>
+            <span data-label-loading class="hidden">Enviando...</span>
+          </button>
+        </form>
+
+        <form
+          id="reset-form"
+          class="mt-8 hidden space-y-5"
+          novalidate
+        >
+          <p class="rounded-md border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+            Crea una nueva contraseña para tu cuenta. El enlace es temporal y de
+            un solo uso.
+          </p>
+
+          <label
+            for="reset-password"
+            class="flex flex-col gap-1.5"
+          >
+            <span class="text-sm font-medium text-text">
+              Nueva contraseña <span class="text-accent" aria-hidden="true">*</span>
+            </span>
+            <input
+              id="reset-password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              minlength="8"
+              required
+              class={fieldClass}
+              aria-describedby="reset-password-help"
+            />
+            <span id="reset-password-help" class="text-sm text-text-muted">
+              Usa al menos 8 caracteres.
+            </span>
+          </label>
+
+          <label
+            for="reset-password-confirmation"
+            class="flex flex-col gap-1.5"
+          >
+            <span class="text-sm font-medium text-text">
+              Repite la contraseña <span class="text-accent" aria-hidden="true">*</span>
+            </span>
+            <input
+              id="reset-password-confirmation"
+              name="password_confirmation"
+              type="password"
+              autocomplete="new-password"
+              minlength="8"
+              required
+              class={fieldClass}
+            />
+          </label>
+
+          <button
+            id="reset-submit"
+            type="submit"
+            class="inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-md bg-accent px-8 py-3 text-base font-bold uppercase text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+          >
+            <span data-label-idle>Actualizar contraseña</span>
+            <span data-label-loading class="hidden">Actualizando...</span>
+          </button>
+        </form>
+
+        <div class="mt-8 border-t border-border pt-6 text-center">
+          <a
+            href="/mi-casillero"
+            class="text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            Volver a Mi casillero
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script>
+  (() => {
+    const publicApiUrl = import.meta.env.PUBLIC_API_URL;
+    const apiBaseUrl = publicApiUrl ? publicApiUrl.replace(/\/$/, "") : "";
+    const requestEndpoint = apiBaseUrl
+      ? `${apiBaseUrl}/api/public/password/forgot`
+      : "";
+    const resetEndpoint = apiBaseUrl
+      ? `${apiBaseUrl}/api/public/password/reset`
+      : "";
+
+    const requestForm = document.getElementById("request-form");
+    const resetForm = document.getElementById("reset-form");
+    const status = document.getElementById("reset-status");
+    const requestEmail = document.getElementById("request-email");
+    const requestEmailError = document.getElementById("request-email-error");
+    const resetPassword = document.getElementById("reset-password");
+    const resetPasswordConfirmation = document.getElementById(
+      "reset-password-confirmation",
+    );
+    const requestSubmit = document.getElementById("request-submit");
+    const resetSubmit = document.getElementById("reset-submit");
+
+    const isInput = (element: Element | null): element is HTMLInputElement =>
+      element instanceof HTMLInputElement;
+
+    const isButton = (element: Element | null): element is HTMLButtonElement =>
+      element instanceof HTMLButtonElement;
+
+    const isForm = (element: Element | null): element is HTMLFormElement =>
+      element instanceof HTMLFormElement;
+
+    const isRecord = (value: unknown): value is Record<string, unknown> =>
+      value !== null && typeof value === "object";
+
+    const readJsonResponse = async (response: Response): Promise<unknown | null> => {
+      try {
+        return await response.json();
+      } catch {
+        return null;
+      }
+    };
+
+    const setStatus = (message: string, type: "success" | "error" | "info") => {
+      if (!status) return;
+
+      status.textContent = message;
+      status.classList.remove(
+        "hidden",
+        "border-green-200",
+        "bg-green-50",
+        "text-green-700",
+        "border-red-200",
+        "bg-red-50",
+        "text-red-700",
+        "border-blue-200",
+        "bg-blue-50",
+        "text-blue-700",
+      );
+
+      const styles = {
+        success: ["border-green-200", "bg-green-50", "text-green-700"],
+        error: ["border-red-200", "bg-red-50", "text-red-700"],
+        info: ["border-blue-200", "bg-blue-50", "text-blue-700"],
+      } as const;
+
+      status.classList.add(...styles[type]);
+    };
+
+    const focusStatus = () => {
+      if (status instanceof HTMLElement) status.focus();
+    };
+
+    const setLoading = (button: HTMLButtonElement | null, loading: boolean) => {
+      if (!button) return;
+
+      button.disabled = loading;
+      button.querySelector("[data-label-idle]")?.classList.toggle("hidden", loading);
+      button.querySelector("[data-label-loading]")?.classList.toggle("hidden", !loading);
+    };
+
+    const messageFromResponse = (data: unknown, fallback: string): string => {
+      if (isRecord(data) && typeof data.message === "string") return data.message;
+      return fallback;
+    };
+
+    const query = new URLSearchParams(window.location.search);
+    const token = query.get("token")?.trim() ?? "";
+    const emailFromQuery = query.get("email")?.trim() ?? "";
+
+    if (token && emailFromQuery && requestForm && resetForm) {
+      requestForm.classList.add("hidden");
+      resetForm.classList.remove("hidden");
+      if (isInput(resetPassword)) resetPassword.focus();
+    }
+
+    requestForm?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!isInput(requestEmail) || !requestEmail.checkValidity()) {
+        requestEmailError?.classList.remove("hidden");
+        requestEmail?.focus();
+        return;
+      }
+
+      requestEmailError?.classList.add("hidden");
+      setLoading(isButton(requestSubmit) ? requestSubmit : null, true);
+      setStatus("Estamos procesando tu solicitud...", "info");
+
+      try {
+        if (!requestEndpoint) throw new Error("Missing API endpoint");
+
+        const response = await fetch(requestEndpoint, {
+          method: "POST",
+          headers: {"Content-Type": "application/json", Accept: "application/json"},
+          body: JSON.stringify({email: requestEmail.value.trim()}),
+        });
+        const data = await readJsonResponse(response);
+
+        if (response.ok) {
+          setStatus(
+            "Si el correo está registrado, recibirás instrucciones para recuperar tu contraseña.",
+            "success",
+          );
+          if (isForm(requestForm)) requestForm.reset();
+        } else {
+          setStatus(
+            messageFromResponse(
+              data,
+              "No pudimos procesar la solicitud. Revisa los datos e intenta nuevamente.",
+            ),
+            "error",
+          );
+        }
+      } catch (error) {
+        console.error("Password reset request failed", error);
+        setStatus(
+          "No pudimos procesar la solicitud en este momento. Intenta nuevamente en unos minutos.",
+          "error",
+        );
+      } finally {
+        setLoading(isButton(requestSubmit) ? requestSubmit : null, false);
+        focusStatus();
+      }
+    });
+
+    resetForm?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!isInput(resetPassword) || !isInput(resetPasswordConfirmation)) return;
+
+      if (!resetPassword.value || resetPassword.value.length < 8) {
+        setStatus("La nueva contraseña debe tener al menos 8 caracteres.", "error");
+        resetPassword.focus();
+        return;
+      }
+
+      if (resetPassword.value !== resetPasswordConfirmation.value) {
+        setStatus("Las contraseñas no coinciden.", "error");
+        resetPasswordConfirmation.focus();
+        return;
+      }
+
+      setLoading(isButton(resetSubmit) ? resetSubmit : null, true);
+      setStatus("Estamos actualizando tu contraseña...", "info");
+
+      try {
+        if (!resetEndpoint || !token || !emailFromQuery) throw new Error("Missing reset data");
+
+        const response = await fetch(resetEndpoint, {
+          method: "POST",
+          headers: {"Content-Type": "application/json", Accept: "application/json"},
+          body: JSON.stringify({
+            email: emailFromQuery,
+            token,
+            password: resetPassword.value,
+            password_confirmation: resetPasswordConfirmation.value,
+          }),
+        });
+        const data = await readJsonResponse(response);
+
+        if (response.ok) {
+          setStatus(
+            "Tu contraseña fue actualizada. Ya puedes ingresar a Mi casillero.",
+            "success",
+          );
+          if (isForm(resetForm)) resetForm.reset();
+          setTimeout(() => window.location.assign("/mi-casillero"), 1400);
+        } else {
+          setStatus(
+            messageFromResponse(
+              data,
+              "El enlace no es válido o ya expiró. Solicita uno nuevo.",
+            ),
+            "error",
+          );
+        }
+      } catch (error) {
+        console.error("Password reset confirmation failed", error);
+        setStatus(
+          "No pudimos actualizar tu contraseña en este momento. Solicita un enlace nuevo e inténtalo otra vez.",
+          "error",
+        );
+      } finally {
+        setLoading(isButton(resetSubmit) ? resetSubmit : null, false);
+        focusStatus();
+      }
+    });
+  })();
+</script>
