@@ -273,6 +273,7 @@ const fieldClass =
                   </p>
                 </div>
                 <span
+                  id="card-locker-status"
                   class="inline-flex rounded-full border border-primary-fg/30 bg-green-600 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-fg shadow-sm shadow-green-400"
                 >
                   Activo
@@ -1025,6 +1026,7 @@ const fieldClass =
     interface LockerAccessResponse {
       customer_name: string;
       locker_code: string;
+      status: "active" | "inactive";
       shipping_data: ShippingData;
     }
 
@@ -1051,6 +1053,8 @@ const fieldClass =
       : "";
     const invalidCredentialsMessage =
       "El correo o la contraseña no son correctos.";
+    const inactiveLockerMessage =
+      "Tu casillero está inactivo. Comunícate con CaricoXpress para solicitar asistencia.";
     const rateLimitMessage =
       "Has realizado varios intentos en poco tiempo. Espera un momento antes de intentar nuevamente.";
     const genericErrorMessage =
@@ -1213,6 +1217,14 @@ const fieldClass =
     const hasString = (value: unknown): value is string =>
       isString(value) && value.trim().length > 0;
 
+    const readErrorMessage = async (
+      response: Response,
+      fallback: string,
+    ): Promise<string> => {
+      const data = await readJsonResponse(response);
+      return isRecord(data) && hasString(data.message) ? data.message : fallback;
+    };
+
     const isValidShippingData = (value: unknown): value is ShippingData => {
       if (!isRecord(value)) return false;
 
@@ -1231,6 +1243,9 @@ const fieldClass =
     ): data is LockerAccessResponse => {
       if (!isRecord(data)) return false;
       if (!hasString(data.customer_name) || !hasString(data.locker_code)) {
+        return false;
+      }
+      if (data.status !== "active" && data.status !== "inactive") {
         return false;
       }
       if (!isValidShippingData(data.shipping_data)) return false;
@@ -1574,6 +1589,16 @@ const fieldClass =
         cardLockerCode.textContent = data.locker_code;
       }
 
+      const lockerStatus = document.getElementById("card-locker-status");
+      if (lockerStatus) {
+        const isActive = data.status === "active";
+        lockerStatus.textContent = isActive ? "Activo" : "Inactivo";
+        lockerStatus.classList.toggle("bg-green-600", isActive);
+        lockerStatus.classList.toggle("shadow-green-400", isActive);
+        lockerStatus.classList.toggle("bg-gray-500", !isActive);
+        lockerStatus.classList.toggle("shadow-gray-400", !isActive);
+      }
+
       setText("shipping-warehouse_reference", customerReference);
       setText("postal-customer-reference", customerReference);
       setText("postal-address_line_1", shippingData.address_line_1);
@@ -1631,6 +1656,12 @@ const fieldClass =
           return;
         }
 
+        if (response.status === 403) {
+          setError(await readErrorMessage(response, inactiveLockerMessage));
+          setLoading(false);
+          return;
+        }
+
         if (response.status === 429) {
           setError(rateLimitMessage);
           setLoading(false);
@@ -1638,7 +1669,7 @@ const fieldClass =
         }
 
         if (!response.ok) {
-          setError(genericErrorMessage);
+          setError(await readErrorMessage(response, genericErrorMessage));
           setLoading(false);
           return;
         }
@@ -1677,6 +1708,14 @@ const fieldClass =
             setError(
               "Tu sesión expiró. Inicia sesión nuevamente para consultar tu casillero.",
             );
+          }
+          return;
+        }
+
+        if (response.status === 403) {
+          localStorage.removeItem("caricoxpress_locker");
+          if (hadStoredLocker) {
+            setError(await readErrorMessage(response, inactiveLockerMessage));
           }
           return;
         }
