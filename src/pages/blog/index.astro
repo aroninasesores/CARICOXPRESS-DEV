@@ -14,9 +14,29 @@ import guiaEmbalaje from "../../assets/images/gallery/Nuestro personal siempre d
 import comprasSeguras from "../../assets/images/gallery/Maquinaria lista para mover su carga.png";
 import aereoMaritimo from "../../assets/images/gallery/Conexión marítima directa con Venezuela.png";
 import casilleroMiami from "../../assets/images/gallery/Despachos aéreos express todas las semanas.png";
+import prealertaTracking from "../../assets/images/gallery/prealerta-tracking-cover.png";
+import registroCasillero from "../../assets/images/gallery/registro-casillero-cover.png";
+import direccionTiendas from "../../assets/images/gallery/como-llenar-direccion-cover.png";
+
+const featuredOrder = [
+  "como-abrir-y-usar-tu-casillero-internacional-en-miami",
+  "como-hacer-una-prealerta-en-mi-casillero",
+  "como-llenar-tu-direccion-de-envio-en-tiendas-virtuales",
+];
 
 const posts = (await getCollection("blog", ({data}) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  (a, b) => {
+    const aPriority = featuredOrder.indexOf(a.id);
+    const bPriority = featuredOrder.indexOf(b.id);
+
+    if (aPriority !== -1 || bPriority !== -1) {
+      if (aPriority === -1) return 1;
+      if (bPriority === -1) return -1;
+      return aPriority - bPriority;
+    }
+
+    return b.data.date.valueOf() - a.data.date.valueOf();
+  },
 );
 
 const postImages = {
@@ -41,8 +61,16 @@ const postImages = {
     alt: "Conexión de carga marítima y logística internacional entre Miami y Venezuela",
   },
   "como-abrir-y-usar-tu-casillero-internacional-en-miami": {
-    src: casilleroMiami,
-    alt: "Despachos aéreos express organizados para clientes con casillero internacional en Miami",
+    src: registroCasillero,
+    alt: "Cliente completando el registro de su casillero internacional",
+  },
+  "como-hacer-una-prealerta-en-mi-casillero": {
+    src: prealertaTracking,
+    alt: "Paquete con etiqueta de código de barras y seguimiento de envío",
+  },
+  "como-llenar-tu-direccion-de-envio-en-tiendas-virtuales": {
+    src: direccionTiendas,
+    alt: "Revisión de una dirección de envío en un teléfono junto a la etiqueta de un paquete",
   },
 } as const;
 ---
